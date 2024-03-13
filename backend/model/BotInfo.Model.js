@@ -13,7 +13,7 @@ const BotInfoShema=new Schema({
         require:true
     },
     DOS:{
-        type:Date,
+        type:String,
         require:true
     },
     Gender:{
@@ -21,7 +21,7 @@ const BotInfoShema=new Schema({
         require:true
     },
     DOB:{
-        type:Date,
+        type:String,
         require:true
     },
     Address:{
@@ -48,11 +48,11 @@ const BotInfoShema=new Schema({
         require:false
     },
     Primary_Start_Date:{
-        type:Date,
+        type:String,
         require:false
     },
     Primary_End_Date:{
-        type:Date,
+        type:String,
         require:false
     },
    
@@ -69,11 +69,11 @@ const BotInfoShema=new Schema({
         require:false
     },
     Secondary_Start_Date:{
-        type:Date,
+        type:String,
         require:false
     },
     Secondary_End_Date:{
-        type:Date,
+        type:String,
         require:false
     },
     Tertiary_Insurance:{
@@ -89,11 +89,11 @@ const BotInfoShema=new Schema({
         require:false
     },
     Tertiary_Start_Date:{
-        type:Date,
+        type:String,
         require:false
     },
     Tertiary_End_Date:{
-        type:Date,
+        type:String,
         require:false
     },
     date:{

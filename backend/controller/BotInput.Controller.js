@@ -1,9 +1,15 @@
 const  BotInfo= require('../model/BotInfo.Model');
-const { body, validationResult } = require('express-validator');
+const bcrypt=require('bcrypt')
+const { body, validationResult, header } = require('express-validator');
 
 
 exports.FetchAllBotInput=async (req, res) => {
     try {
+        const tokenCompare = await bcrypt.compare(process.env.SECRET_TOKEN,req.get(token));
+        if (tokenCompare) {
+          return res.status(401).json({ error: "Please authenticate with valid token" })
+        }
+
         const input = await BotInfo.find({ });
         res.json(input)
     } catch (error) {
@@ -14,6 +20,18 @@ exports.FetchAllBotInput=async (req, res) => {
 
 exports.AddBotInput= async (req, res) => {
     try {
+         console.log(req.get(Headers))
+        const tokenCompare = await bcrypt.compare(process.env.SECRET_TOKEN,req.get(token))
+      if (tokenCompare) {
+        return res.status(401).json({ error: "Please authenticate with valid token" })
+      }
+         // Check whether the Patient with this email exists already
+      let user = await BotInfo.find({ DOB: req.body.DOB });
+      if (user) {
+        return res.status(400).json({ error: "Sorry a Patient with this DOB already exists" })
+      }
+      
+      
         // const { Patient_Name,Insurance,DOS,Gender,DOB,Address,Phone,
         //     Primary_Insurance,Primary_Insurance_Name,Primary_Insurance_Number,Primary_Start_Date,Primary_End_Date,
         //     Secondary_insurance, Secondary_Insurance_Name, Secondary_Insurance_Number,Secondary_Start_Date,Secondary_End_Date ,
