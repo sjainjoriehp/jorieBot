@@ -5,8 +5,8 @@ const { body, validationResult, header } = require('express-validator');
 
 exports.FetchAllBotInput=async (req, res) => {
     try {
-        const tokenCompare = await bcrypt.compare(process.env.SECRET_TOKEN,req.get(token));
-        if (tokenCompare) {
+        const tokenCompare = await bcrypt.compare(process.env.SECRET_TOKEN,req.header("token"));
+        if (!tokenCompare) {
           return res.status(401).json({ error: "Please authenticate with valid token" })
         }
 
@@ -20,9 +20,10 @@ exports.FetchAllBotInput=async (req, res) => {
 
 exports.AddBotInput= async (req, res) => {
     try {
-         console.log(req.get(Headers))
-        const tokenCompare = await bcrypt.compare(process.env.SECRET_TOKEN,req.get(token))
-      if (tokenCompare) {
+         
+        const tokenCompare = await bcrypt.compare(process.env.SECRET_TOKEN,req.header("token"))
+      
+      if (!tokenCompare) {
         return res.status(401).json({ error: "Please authenticate with valid token" })
       }
          // Check whether the Patient with this email exists already
