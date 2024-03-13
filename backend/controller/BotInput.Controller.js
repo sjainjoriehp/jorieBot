@@ -20,15 +20,16 @@ exports.FetchAllBotInput=async (req, res) => {
 
 exports.AddBotInput= async (req, res) => {
     try {
-         
+
         const tokenCompare = await bcrypt.compare(process.env.SECRET_TOKEN,req.header("token"))
-      
       if (!tokenCompare) {
         return res.status(401).json({ error: "Please authenticate with valid token" })
       }
          // Check whether the Patient with this email exists already
-      let user = await BotInfo.find({ DOB: req.body.DOB });
-      if (user) {
+      let user = await BotInfo.find({ Patient_Name:req.body.Patient_Name });
+
+      if (user?.length>0) {
+        console.log(req.body)
         return res.status(400).json({ error: "Sorry a Patient with this DOB already exists" })
       }
       
