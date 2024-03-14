@@ -4,11 +4,7 @@ import moment from 'moment';
 import 'react-calendar/dist/Calendar.css';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import TimePicker from 'react-time-picker';
 
-import 'react-time-picker/dist/TimePicker.css';
-import 'react-clock/dist/Clock.css';
-import ReactLoading from 'react-loading';
 
 export const DateComp = (props) => {
     const [dateState, setDateState] = useState("")
@@ -19,7 +15,7 @@ export const DateComp = (props) => {
     let Dob = dateState ? moment(dateState).format('MM/DD/YYYY') : '';
     console.log(`appointment date: ${Dob}`);
     const CallTrigger = (e) => {
-        props.triggerNextStep({ trigger: 'user_gender' })
+        props.triggerNextStep({ trigger: 'Patient_addTriger' })
     }
     return (<>
         {Dob == '' ?
@@ -42,7 +38,7 @@ export const ApptDate = (props) => {
     console.log(`appointment date: ${AptDt}`);
 
     const CallTrigger = (e) => {
-        props.triggerNextStep({ trigger: 'Patient_Time_slot' })
+        props.triggerNextStep({ trigger: 'bot_gender' })
     }
 
     return (<>
@@ -67,11 +63,12 @@ export const MobileNum = (props) => {
     const numberClick= (e) =>{
         // if(phone.length <10) { return false; }
         SetkeyPress(true);
-        // if(props?.steps?.HaveInsurance?.value) {
-            props.triggerNextStep({ trigger: 'PatientEmail' })
-        // }
-        //  else {
-        // }
+        if(props?.steps?.HaveInsurance?.value) {
+            props.triggerNextStep({ trigger: 'InsuranceID' })
+        }
+         else {
+            props.triggerNextStep({ trigger: 'lastTriger' })
+        }
     }
     return (<>
             {
@@ -96,31 +93,4 @@ export const MobileNum = (props) => {
          />
           : <div>{phone}</div>}
     </>);
-}
-
-
-export const  TimeSlotPicker = (props) =>{
-    const [timeSlot, settimeSlot] = useState('');
-    const [flag,setFlag] = useState(false);
-    const  handleTimeChange = (time) => {
-        settimeSlot(time);
-        setFlag(true);
-        props.triggerNextStep({ trigger: 'Thanking_msg' })
-    }
-    return (
-        <>
-        
-            {timeSlot =='' ?
-            <div style={{height:"auto"}}>
-            <TimePicker onChange={handleTimeChange}  value={timeSlot}  isOpen={false} hourPlaceholder="HH" minutePlaceholder="MM"  shouldOpenClock={({ reason="focus" }) => false} />
-            </div>
-              :
-              <div>Time-slot : {timeSlot}</div>}
-        </>
-    );
-}
-
-
-export const Loader = (props) =>{
-    <ReactLoading type="spin" color="#f5f8fb" height={667} width={375} />
 }

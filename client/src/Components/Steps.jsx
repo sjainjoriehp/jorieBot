@@ -1,6 +1,6 @@
 import props from 'prop-types';
 import moment from 'moment';
-import { DateComp, ApptDate, MobileNum } from './SubComp/CommonComp';
+import { DateComp, ApptDate, MobileNum,TimeSlotPicker, Loader } from './SubComp/CommonComp';
 function SendEmail(props) {
     const { steps } = props;
     let obj = {
@@ -54,56 +54,41 @@ const BotData = () => {
 export const steps = [
     {
         id: "Greet",
-        message: "Hello, Welcome to Web Asist.",
+        message: "Good day! To assist you better,",
         trigger: "AskName",
+        // trigger:"User_TimeSlot"
     },
+    
     {
         id: "AskName",
-        message: "Please type Patient Name ?",
+        message: "may I kindly ask for the complete name of the patient?(Last Name, First Name)",
         trigger: "user_input_for_name"
     },
     {
         id: "user_input_for_name",
         user: true,
-        trigger: "ask_questions"
+        validator: (value) => {
+                if (value == '') {
+                  return 'Patient name can not be blank.';
+                }
+                return true;
+              },
+        trigger: "user_Dob"
     },
     {
-        id: "ask_questions",
-        message: "Do you have Insurance ?",
-        trigger: "HaveInsurance"
+        id: "user_Dob",
+        message: "Please provide the patient's date of birth?",
+        trigger: "Patinet_DOB"
     },
     {
-        id: "HaveInsurance",
-        options: [
+        id: "Patinet_DOB",
+        component: <DateComp />,
+        hideInput: true,
+    },
 
-            {
-                value: "no",
-                label: "no",
-                trigger: "INS_boolVal"
-            },
-            {
-                value: "Yes",
-                label: "Yes",
-                trigger: "INS_boolVal"
-            }
-
-        ]
-    },
     {
-        id: "INS_boolVal",
-        message: "Appt Date/DOS ?",
-        trigger: "userInput_appt"
-    },
-    {
-        id: "userInput_appt",
-        component: <ApptDate />
-        // user: true,
-        // trigger: "bot_gender"
-
-    },
-    {
-        id: "bot_gender",
-        message: "please select Gender..",
+        id: "user_gender",
+        message: "Please select patient's Gender?",
         trigger: "Gender"
     },
 
@@ -112,64 +97,310 @@ export const steps = [
         options: [
 
             {
-                id: "yGm",
+                id: "Pmale",
                 value: "male",
                 label: "Male",
-                trigger: "DobTrig"
+                trigger: "PAddress"
             },
             {
-                id: "yGf",
+                id: "pfemale",
                 value: "female",
                 label: "Female",
-                trigger: "DobTrig"
-                // trigger: ""
+                trigger: "PAddress"
+            },
+            {
+                id: "ptrans",
+                value: "transgender",
+                label: "Transgender",
+                trigger: "PAddress"
             }
 
         ],
 
     },
-    {
-        id: "DobTrig",
-        message: "Please Enter DOB (Format should be  MM/DD/YYYY).",
-        trigger: "User_input_DOB"
-    },
-    {
-        id: "User_input_DOB",
-        component: <DateComp />,
-        // asMessage: true,
-        // user: true,
-        // validator: (value) => {
-        //         if (moment(value, 'MM/DD/YYYY',true).isValid()) {
-        //             return true;
-        //         } else {
-        //             return 'Please enter valid format.';
-        //         }
-        //       },
-        // trigger: "Patient_addTriger"
 
+    {
+        id: "PAddress",
+        message: "Please enter Patient’s Address ? (Format should be : Full Address/Zip Code/State/Country)",
+        trigger: "User_input_address"
     },
     {
-        id: "Patient_addTriger",
-        message: "Patient Address ?",
-        trigger: "User_input_PatientAddress"
-    },
-    {
-        id: "User_input_PatientAddress",
+        id: "User_input_address",
         user: true,
-        trigger: "Patient_phone"
+        trigger: "Patients_phone",
+
     },
     {
-        id: "Patient_phone",
-        message: "Enter your Phone number.",
-        trigger: "User_input_PhoneNumber"
+        id: "Patients_phone",
+        message: "Please enter Patient’s Phone Number ?",
+        trigger: "User_input_phone"
+    },
+    {
+        id: "User_input_phone",
+        component: <MobileNum />
+    },
+    {
+        id: "PatientEmail",
+        message: "Please enter Patient’s Email Address.",
+        trigger: "User_email",
+    },
+    {
+        id: 'User_email',
+        validator: (value) => {
+            let result=value.match(
+                /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+              );
+                if (!result) {
+                    return 'Please enter valid email' 
+                }
+                return true;
+              },
+        user: true,
+        trigger:"Patient_HI"
+    },
+    {
+        id: "Patient_HI",
+        message: "Does the patient have health insurance?",
+        trigger: "User_HI"
+    },
+    {
+        id: "User_HI",
+        options: [
+            {
+                id: "HIY",
+                value: true,
+                label: "Yes",
+                trigger: "Patient_HI_name"
+            },
+            {
+                id: "HIN",
+                value: false,
+                label: "No",
+                trigger: "PVisiting"
+            },
+        ],
+    },
+    {
+        id: "Patient_HI_name",
+        message: "What is the name of the patient's insurance provider?",
+        trigger: "User_input_HI_name"
+    },
+    {
+        id: "User_input_HI_name",
+        user: true,
+        trigger:"HI_id"
     },
 
     {
-        id: "User_input_PhoneNumber",
-        // user: true,
-        // trigger: ""
-        component: <MobileNum/>
+        id:"HI_id",
+        message:"Please provide insurance ID for the patient?",
+        trigger:"User_input_PHI_id",
+    },
+    {
+        id:"User_input_PHI_id",
+        user:true,
+        trigger:"PVisiting"
+    },
+    {
+        id: "PVisiting",
+        message: "are you visiting for the first time, or is it a follow-up visit ?",
+        trigger:"Validate_MRN"
+    },
+    {
+        id:"Validate_MRN",
+        options: [
+            {
+                id: "NMRN",
+                value: false,
+                label: "First Time Visit",
+                trigger: "P_healthcareProvider"
+            },
+            {
+                id: "YMRN",
+                value: true,
+                label: "Follow-up Visit",
+                trigger: "P_healthcareProvider"
+            },
+        ],
+    },
+    {
+        id:"P_healthcareProvider",
+        message:"Do you have a preferred healthcare provider?",
+        trigger:"Validate_HI_provider"
+    },
+
+    {
+        id:"Validate_HI_provider",
+        options:[
+            {
+                id: "YHP",
+                value: true,
+                label: "Yes",
+                trigger: "P_HP_name"
+            },
+            {
+                id: "NHP",
+                value: false,
+                label: "No",
+                trigger: "Patient_DOV"
+            },
+        ]
+    },
+    {
+        id:"P_HP_name",
+        message:"Please specify your healthcare provider ?",
+        trigger:"User_input_Patient_HP"
+    },
+    {
+        id:"User_input_Patient_HP",
+        user:true,
+        trigger:"Patient_DOV"
+    },
+    {
+        id:"Patient_DOV",
+        message:"Please select Preferred Date of Visit ?",
+        trigger:"User_DOV",
+    },
+    {
+        id:"User_DOV",
+        component:<ApptDate/>
+    },
+    {
+        id:"Patient_Time_slot",
+        message:"Please provide Preferred Time-slot ?",
+        trigger:"User_TimeSlot"
+    },
+    {
+        id:"User_TimeSlot",
+        component:<TimeSlotPicker/>,
+        hideInput:true,
+
+    },
+    {
+        id:"Thanking_msg",
+        message:"Thank you for your time, we have all the information we need...",
+       trigger:"thnaking_msg2"
+    },
+    {
+        id:"thnaking_msg2",
+        message:"please wait.....while we book the appointment for you.",
+        // component:<Loader/>,
+        end: true
     }
+
+
+    // {
+    //     id: "INS_boolVal",
+    //     message: "Appt Date/DOS ?",
+    //     trigger: "userInput_appt"
+    // },
+    // {
+    //     id: "userInput_appt",
+    //     component: <ApptDate />,
+    //     waitAction: true,
+    //     // asUser:true,
+    //     // user: true,
+    //     // trigger: "bot_gender"
+
+    // },
+
+    // {
+    //     id: "bot_gender",
+    //     message: "please select Gender..",
+    //     trigger: "Gender"
+    // },
+
+    // {
+    //     id: "Gender",
+    //     options: [
+
+    //         {
+    //             id: "yGm",
+    //             value: "male",
+    //             label: "Male",
+    //             trigger: "DobTrig"
+    //         },
+    //         {
+    //             id: "yGf",
+    //             value: "female",
+    //             label: "Female",
+    //             trigger: "DobTrig"
+    //             // trigger: ""
+    //         }
+
+    //     ],
+
+    // },
+    // {
+    //     id: "DobTrig",
+    //     message: "Please Enter DOB (Format should be  MM/DD/YYYY).",
+    //     trigger: "User_input_DOB"
+    // },
+    // {
+    //     id: "User_input_DOB",
+    //     component: <DateComp />,
+    //     hideInput:true,
+    // },
+    // {
+    //     id: "Patient_addTriger",
+    //     message: "Patient Address ?",
+    //     trigger: "User_input_PatientAddress"
+    // },
+    // {
+    //     id: "User_input_PatientAddress",
+    //     user: true,
+    //     trigger: "Patient_phone"
+    // },
+    // {
+    //     id: "Patient_phone",
+    //     message: "Enter your Phone number.",
+    //     trigger: "User_input_PhoneNumber"
+    // },
+
+    // {
+    //     id: "User_input_PhoneNumber",
+    //     // user: true,
+    //     // trigger: ""
+    //     component: <MobileNum/>
+    // },
+    // {
+    //     id:"InsuranceID",
+    //     message:"Please Enter InsuranceID",
+    //     trigger:"User_input_InsuranceID"
+    // },
+    // {
+    //     id:"User_input_InsuranceID",
+    //     user:true,
+    //     trigger:"PrimaryInsurance",
+    // },
+    // {
+    //     id: "PrimaryInsurance",
+    //     message:"Do you have Primary Insurance ?",
+    //     // trigger: "YesNo_PrimaryInsurance"
+    // },
+    // // {
+    // //     id:"YesNo_PrimaryInsurance",
+    // //     options:[
+    // //         {
+    // //             id: "",
+    // //             value: "male",
+    // //             label: "Male",
+    // //             // trigger: "DobTrig"
+    // //         },
+    // //         {
+    // //             id: "yGf",
+    // //             value: "female",
+    // //             label: "Female",
+    // //             // trigger: ""
+    // //         }
+    // //     ],
+    // // },
+
+    // {
+    //     id:"lastTriger",
+    //     message:"Pleasee wait for bot response...",
+    //     end: true
+    // }
 
     // {
 

@@ -8,7 +8,7 @@ import { steps } from "./Steps";
 function ChatModel() {
   const theme = {
     background: '#f5f8fb',
-    fontFamily: 'Helvetica Neue',
+    // fontFamily: 'Helvetica Neue',
     headerBgColor: ' #0f89db',
     headerFontColor: '#fff',
     headerFontSize: '15px',
