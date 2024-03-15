@@ -8,93 +8,63 @@ const BotInfoShema=new Schema({
         type:String,
         require:true
     },
-    Insurance:{
+    Patient_Insurance_Status:{
         type:String,
         require:true
     },
-    DOS:{
+   Patient_email: {
+           type:String,
+           require:true
+    },
+    Patient_Gender:{
         type:String,
         require:true
     },
-    Gender:{
+    Patient_DOB:{
         type:String,
         require:true
     },
-    DOB:{
+    Patient_Address:{
         type:String,
         require:true
     },
-    Address:{
-        type:String,
-        require:true
-    },
-    Phone:{
+    Patient_Phone:{
         type:String,
         require:true
 
     },
+    Patient_Insurance_Provider:{
+        type:String,
+        require:false,
+        default:"NA"
+    },
+    Patient_Insurance_ID:{
+       type:String,
+       require:false,
+       default:"NA"
+    },
+    Patient_Visiting_Status:{
+        type:String,
+        require:true
+    },
+    Patient_Preferred_healthcare_Provider_Status:{
+           type:String,
+           require:true,
 
-    Primary_Insurance:{
-        type:String,
-        require:false
     },
-    Primary_Insurance_Name:{
+    Patient_Preferred_healthcare_Provider_Name:{
         type:String,
-        require:false
+        require:false,
+        default:"NA"
     },
-   
-    Primary_Insurance_Number:{
+    Patient_Date_Of_Visit:{
         type:String,
-        require:false
+        require:true
     },
-    Primary_Start_Date:{
+    Patient_TimeSLot:{
         type:String,
-        require:false
-    },
-    Primary_End_Date:{
-        type:String,
-        require:false
-    },
-   
-    Secondary_insurance:{
-        type:String,
-        require:false
-    },
-    Secondary_Insurance_Name:{
-        type:String,
-        require:false
-    },
-    Secondary_Insurance_Number:{
-        type:String,
-        require:false
-    },
-    Secondary_Start_Date:{
-        type:String,
-        require:false
-    },
-    Secondary_End_Date:{
-        type:String,
-        require:false
-    },
-    Tertiary_Insurance:{
-        type:String,
-        require:false
-    },
-    Tertiary_Insurance_Name:{
-        type:String,
-        require:false
-    },
-    Tertiary_Insurance_Number:{
-        type:String,
-        require:false
-    },
-    Tertiary_Start_Date:{
-        type:String,
-        require:false
-    },
-    Tertiary_End_Date:{
-        type:String,
-        require:false
+        require:true
+
     },
     date:{
         type:Date,
