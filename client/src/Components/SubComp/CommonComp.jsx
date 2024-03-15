@@ -122,5 +122,11 @@ export const  TimeSlotPicker = (props) =>{
 
 
 export const Loader = (props) =>{
-    <ReactLoading type="spin" color="#f5f8fb" height={667} width={375} />
+    return (<>
+    <div >
+   <center><ReactLoading type="spinningBubbles" color="#f5f8fb"  height={30} width={50} /></center>
+    <p>please wait... while we book the appointment for you.</p>
+    </div>
+    
+    </>);
 }
