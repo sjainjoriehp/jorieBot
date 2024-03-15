@@ -1,6 +1,6 @@
 import props from 'prop-types';
 import moment from 'moment';
-import { DateComp, ApptDate, MobileNum,TimeSlotPicker, Loader } from './SubComp/CommonComp';
+import { DateComp, ApptDate, MobileNum, TimeSlotPicker, Loader } from './SubComp/CommonComp';
 function SendEmail(props) {
     const { steps } = props;
     let obj = {
@@ -58,21 +58,27 @@ export const steps = [
         trigger: "AskName",
         // trigger:"User_TimeSlot"
     },
-    
+
     {
         id: "AskName",
-        message: "may I kindly ask for the complete name of the patient?(Last Name, First Name)",
+        message: "may I kindly ask for the complete name of the patient ? (Last Name, First Name)",
         trigger: "user_input_for_name"
     },
     {
         id: "user_input_for_name",
         user: true,
         validator: (value) => {
-                if (value == '') {
-                  return 'Patient name can not be blank.';
-                }
-                return true;
-              },
+            let validName = value.trim().replace(/\s{2,}/g, ' ').split(" ");
+            console.log(validName);
+            if (value == '') {
+                return 'Patient name can not be blank.';
+            }
+
+            else if (validName?.length < 2) {
+                console.log(validName);
+                return "Enter a valid name as per in example format.";
+            } else { return true; }
+        },
         trigger: "user_Dob"
     },
     {
@@ -91,7 +97,6 @@ export const steps = [
         message: "Please select patient's Gender?",
         trigger: "Gender"
     },
-
     {
         id: "Gender",
         options: [
@@ -121,7 +126,7 @@ export const steps = [
 
     {
         id: "PAddress",
-        message: "Please enter Patient’s Address ? (Format should be : Full Address/Zip Code/State/Country)",
+        message: "Please enter Patient’s Address  ? (Format should be : Full Address/Zip Code/State/Country)",
         trigger: "User_input_address"
     },
     {
@@ -147,16 +152,16 @@ export const steps = [
     {
         id: 'User_email',
         validator: (value) => {
-            let result=value.match(
+            let result = value.match(
                 /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-              );
-                if (!result) {
-                    return 'Please enter valid email' 
-                }
-                return true;
-              },
+            );
+            if (!result) {
+                return 'Please enter valid email'
+            }
+            return true;
+        },
         user: true,
-        trigger:"Patient_HI"
+        trigger: "Patient_HI"
     },
     {
         id: "Patient_HI",
@@ -188,26 +193,26 @@ export const steps = [
     {
         id: "User_input_HI_name",
         user: true,
-        trigger:"HI_id"
+        trigger: "HI_id"
     },
 
     {
-        id:"HI_id",
-        message:"Please provide insurance ID for the patient?",
-        trigger:"User_input_PHI_id",
+        id: "HI_id",
+        message: "Please provide insurance ID for the patient?",
+        trigger: "User_input_PHI_id",
     },
     {
-        id:"User_input_PHI_id",
-        user:true,
-        trigger:"PVisiting"
+        id: "User_input_PHI_id",
+        user: true,
+        trigger: "PVisiting"
     },
     {
         id: "PVisiting",
         message: "are you visiting for the first time, or is it a follow-up visit ?",
-        trigger:"Validate_MRN"
+        trigger: "Validate_MRN"
     },
     {
-        id:"Validate_MRN",
+        id: "Validate_MRN",
         options: [
             {
                 id: "NMRN",
@@ -224,14 +229,14 @@ export const steps = [
         ],
     },
     {
-        id:"P_healthcareProvider",
-        message:"Do you have a preferred healthcare provider?",
-        trigger:"Validate_HI_provider"
+        id: "P_healthcareProvider",
+        message: "Do you have a preferred healthcare provider?",
+        trigger: "Validate_HI_provider"
     },
 
     {
-        id:"Validate_HI_provider",
-        options:[
+        id: "Validate_HI_provider",
+        options: [
             {
                 id: "YHP",
                 value: true,
@@ -247,44 +252,45 @@ export const steps = [
         ]
     },
     {
-        id:"P_HP_name",
-        message:"Please specify your healthcare provider ?",
-        trigger:"User_input_Patient_HP"
+        id: "P_HP_name",
+        message: "Please specify your healthcare provider ?",
+        trigger: "User_input_Patient_HP"
     },
     {
-        id:"User_input_Patient_HP",
-        user:true,
-        trigger:"Patient_DOV"
+        id: "User_input_Patient_HP",
+        user: true,
+        trigger: "Patient_DOV"
     },
     {
-        id:"Patient_DOV",
-        message:"Please select Preferred Date of Visit ?",
-        trigger:"User_DOV",
+        id: "Patient_DOV",
+        message: "Please select Preferred Date of Visit ?",
+        trigger: "User_DOV",
     },
     {
-        id:"User_DOV",
-        component:<ApptDate/>
+        id: "User_DOV",
+        component: <ApptDate />
     },
     {
-        id:"Patient_Time_slot",
-        message:"Please provide Preferred Time-slot ?",
-        trigger:"User_TimeSlot"
+        id: "Patient_Time_slot",
+        message: "Please provide Preferred Time-slot ?",
+        trigger: "User_TimeSlot"
     },
     {
-        id:"User_TimeSlot",
-        component:<TimeSlotPicker/>,
-        hideInput:true,
+        id: "User_TimeSlot",
+        component: <TimeSlotPicker />,
+        hideInput: true,
 
     },
     {
-        id:"Thanking_msg",
-        message:"Thank you for your time, we have all the information we need...",
-       trigger:"thnaking_msg2"
+        id: "Thanking_msg",
+        message: "Thank you for your time, we have all the information we need...",
+        trigger: "thnaking_msg2"
     },
     {
-        id:"thnaking_msg2",
-        message:"please wait.....while we book the appointment for you.",
-        // component:<Loader/>,
+        id: "thnaking_msg2",
+        // message:"please wait.....while we book the appointment for you.",
+        component: <Loader />,
+        asMessage: true,
         end: true
     }
 
