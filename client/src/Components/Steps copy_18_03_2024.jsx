@@ -53,21 +53,15 @@ const BotData = () => {
 }
 export const steps = [
     {
-          id:"Greet",
-          message:"Hi there! I'm XYZ, your Medical Appointment Assistant. How can I assist you today?",
-          trigger:"Greet1"
-
-    },
-    {
-        id: "Greet1",
-        message: "Thank you for choosing our healthcare services. To help us schedule your appointment, could you please provide the following information?",
+        id: "Greet",
+        message: "Good day! To assist you better,",
         trigger: "AskName",
         // trigger:"User_TimeSlot"
     },
 
     {
         id: "AskName",
-        message: "To get started, may I have the patient’s full name? ( Ex: LastName FirstName)",
+        message: "may I kindly ask for the complete name of the patient ? ( Ex: LastName FirstName)",
         trigger: "user_input_for_name"
     },
     {   
@@ -89,7 +83,7 @@ export const steps = [
     },
     {
         id: "user_Dob",
-        message: "Thanks, And could you share the patient’s date of birth?",
+        message: "Please provide the patient's date of birth?",
         trigger: "Patinet_DOB"
     },
     {
@@ -100,7 +94,7 @@ export const steps = [
 
     {
         id: "user_gender",
-        message: "Great, lastly for now, could you tell me the patient’s gender?",
+        message: "Please select patient's Gender?",
         trigger: "Gender"
     },
     {
@@ -132,7 +126,7 @@ export const steps = [
 
     {
         id: "PAddress",
-        message: "Awesome, now let's get into some specifics. What's the patient's address?(Format should be : Full Address/Zip Code/State/Country)",
+        message: "Please enter Patient’s Address  ? (Format should be : Full Address/Zip Code/State/Country)",
         trigger: "User_input_address"
     },
     {
@@ -150,7 +144,7 @@ export const steps = [
     },
     {
         id: "Patients_phone",
-        message: "Thanks! and what about the patient’s phone number ?",
+        message: "Please enter Patient’s Phone Number ?",
         trigger: "User_input_phone"
     },
     {
@@ -159,7 +153,7 @@ export const steps = [
     },
     {
         id: "PatientEmail",
-        message: "Perfect! Do you happen to have the patient’s email address?",
+        message: "Please enter Patient’s Email Address.",
         trigger: "User_email",
     },
     {
@@ -178,7 +172,7 @@ export const steps = [
     },
     {
         id: "Patient_HI",
-        message: "Does the patient have Primary health insurance?",
+        message: "Does the patient has health insurance?",
         trigger: "User_HI"
     },
     {
@@ -200,7 +194,7 @@ export const steps = [
     },
     {
         id: "Patient_HI_name",
-        message: "please provide the primary insurance provider's name ?",
+        message: "What is the name of the patient's insurance provider ?",
         trigger: "User_input_HI_name"
     },
     {
@@ -218,105 +212,17 @@ export const steps = [
 
     {
         id: "HI_id",
-        message: "Great, may I know the insurance ID ?",
+        message: "Please provide insurance ID for the patient?",
         trigger: "User_input_PHI_id",
     },
-       
     {
         id: "User_input_PHI_id",
         user: true,
-        trigger: "Patient_secondary_Insurance"
+        trigger: "PVisiting"
     },
-    { 
-       id:"Patient_secondary_Insurance",
-       message:"Additionally, Does the patient have Secondary health insurance?",
-       trigger:"User_input_secondary_Insurance"     
-    },
-    {
-        id:"User_input_secondary_Insurance",
-        options: [
-            {
-                id: "USHIY",
-                value: true,
-                label: "Yes",
-                trigger: "Patient_secondary_Insurance_provider_name"
-            },
-            {
-                id: "USHIN",
-                value: false,
-                label: "No",
-                trigger: "PVisiting"
-            },
-        ],
-
-    },
-   {
-        id:"Patient_secondary_Insurance_provider_name",
-        message:"please provide the Secondary insurance provider's name ?",
-        trigger:"User_secondary_Insurance_provider_name"  
-   },
-   {
-      id:"User_secondary_Insurance_provider_name",
-      user:true,
-      trigger:"Patient_secondary_Insurance_Id"
-   },
-   {
-      id:"Patient_secondary_Insurance_Id",
-      message:"Great, may I know the insurance ID?",
-      trigger:"User_secondary_Insurance_Id"
-   },
-   {
-      id:"User_secondary_Insurance_Id",
-      user:true,
-      trigger:"Patient_Tertiary_Insurance"
-   },
-   {
-        id:"Patient_Tertiary_Insurance",
-        message:"Does the patient have Tertiary health insurance ?",
-        trigger:"User_Tertiary_Insurance"
-   },
-   {          
-          id:"User_Tertiary_Insurance",
-          options: [
-            {
-                id: "UTHIY",
-                value: true,
-                label: "Yes",
-                trigger: "Patient_Tertiary_Insurance_provider_name"
-            },
-            {
-                id: "UTHIN",
-                value: false,
-                label: "No",
-                trigger: "PVisiting"
-            },
-        ],
-   },
-   {
-      id:"Patient_Tertiary_Insurance_provider_name",
-      message:"Furthermore,please provide the Tertiary insurance provider's name ?",
-      trigger:"User_Tertiary_Insurance_provider_name"
-   },
-   {
-      id:"User_Tertiary_Insurance_provider_name",
-      user:true,
-      trigger:"Patient_Tertiary_Insurance_Id"
-   },
-   {
-       id:"Patient_Tertiary_Insurance_Id",
-       message:"Great, may I know the insurance ID?",
-       trigger:"User_Tertiary_Insurance_Id"
-   },
-   {
-       id:"User_Tertiary_Insurance_Id",
-       user:true,
-       trigger:"PVisiting"
-   },
-    
-
     {
         id: "PVisiting",
-        message: "Is this the patient's first visit, or is it a follow-up visit ?",
+        message: "are you visiting for the first time, or is it a follow-up visit ?",
         trigger: "Validate_MRN"
     },
     {
@@ -338,7 +244,7 @@ export const steps = [
     },
     {
         id: "P_healthcareProvider",
-        message: "Do you have a Preferred Doctor to book the appointment with?",
+        message: "Do you have a preferred healthcare provider?",
         trigger: "Validate_HI_provider"
     },
 
@@ -361,7 +267,7 @@ export const steps = [
     },
     {
         id: "P_HP_name",
-        message: "Which Doctor would you like to book the appointment with ?",
+        message: "Please specify your healthcare provider ?",
         trigger: "User_input_Patient_HP"
     },
     {
@@ -371,7 +277,7 @@ export const steps = [
     },
     {
         id: "Patient_DOV",
-        message: "Lastly, what is your preferred date for the appointment ?",
+        message: "Please select Preferred Date of Visit ?",
         trigger: "User_DOV",
     },
     {
@@ -380,7 +286,7 @@ export const steps = [
     },
     {
         id: "Patient_Time_slot",
-        message: "And what is your preferred time for the appointment ?",
+        message: "Please provide Preferred Time-slot ?",
         trigger: "User_TimeSlot"
     },
     {
@@ -391,7 +297,7 @@ export const steps = [
     },
     {
         id: "Thanking_msg",
-        message: "Thank you for your time. We have all the information we need. Please wait while we book the appointment for you",
+        message: "Thank you for your time, we have all the information we need...",
         trigger: "thnaking_msg2"
     },
     {

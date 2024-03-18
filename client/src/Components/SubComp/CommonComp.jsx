@@ -127,7 +127,7 @@ export const Loader = (props) =>{
     return (<>
     <div >
    <center><ReactLoading type="spinningBubbles" color="#f5f8fb"  height={30} width={50} /></center>
-    <p>please wait... while we book the appointment for you.</p>
+    <p>Your appointment has been booked on [preferred date] at [preferred time]. Your registration number is isa45543ss.</p>
     </div>
     
     </>);
