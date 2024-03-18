@@ -67,7 +67,7 @@ export const MobileNum = (props) => {
     const [isValid, setIsValid] = useState(true);
     const [keyPress,SetkeyPress] =useState(false);
     const numberClick= (e) =>{
-        // if(phone.length <10) { return false; }
+        if(phone?.length <10) { return false; }
         SetkeyPress(true);
         // if(props?.steps?.HaveInsurance?.value) {
             props.triggerNextStep({ trigger: 'PatientEmail' })

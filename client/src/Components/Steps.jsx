@@ -61,15 +61,15 @@ export const steps = [
 
     {
         id: "AskName",
-        message: "may I kindly ask for the complete name of the patient ? (Last Name, First Name)",
+        message: "may I kindly ask for the complete name of the patient ? ( Ex: LastName FirstName)",
         trigger: "user_input_for_name"
     },
-    {
+    {   
         id: "user_input_for_name",
         user: true,
         validator: (value) => {
             let validName = value.trim().replace(/\s{2,}/g, ' ').split(" ");
-            console.log(validName);
+            // console.log(validName);
             if (value == '') {
                 return 'Patient name can not be blank.';
             }
@@ -132,6 +132,13 @@ export const steps = [
     {
         id: "User_input_address",
         user: true,
+        validator: (value) => {
+            if (value == '') {
+                return 'Patient address can not be blank.';
+            }
+
+            else { return true; }
+        },
         trigger: "Patients_phone",
 
     },
@@ -187,12 +194,19 @@ export const steps = [
     },
     {
         id: "Patient_HI_name",
-        message: "What is the name of the patient's insurance provider?",
+        message: "What is the name of the patient's insurance provider ?",
         trigger: "User_input_HI_name"
     },
     {
         id: "User_input_HI_name",
         user: true,
+        validator: (value) => {
+            if (value == '') {
+                return "Patient's insurance provider can not be blank.";
+            }
+
+            else { return true; }
+        },
         trigger: "HI_id"
     },
 
