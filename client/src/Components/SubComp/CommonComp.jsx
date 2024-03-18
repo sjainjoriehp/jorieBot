@@ -12,6 +12,8 @@ import ReactLoading from 'react-loading';
 
 export const DateComp = (props) => {
     const [dateState, setDateState] = useState("")
+
+
     const changeDate = (e) => {
         setDateState(e)
         CallTrigger();

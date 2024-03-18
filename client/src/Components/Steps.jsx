@@ -172,7 +172,7 @@ export const steps = [
     },
     {
         id: "Patient_HI",
-        message: "Does the patient have health insurance?",
+        message: "Does the patient has health insurance?",
         trigger: "User_HI"
     },
     {
