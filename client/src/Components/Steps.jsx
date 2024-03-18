@@ -81,7 +81,7 @@ export const steps = [
             }
 
             else if (validName?.length < 2) {
-                console.log(validName);
+                // console.log(validName);
                 return "Enter a valid name as per in example format.";
             } else { return true; }
         },

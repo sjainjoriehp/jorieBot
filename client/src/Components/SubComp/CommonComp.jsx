@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import moment from 'moment';
 import 'react-calendar/dist/Calendar.css';
-import PhoneInput, { isValidPhoneNumber } from 'react-phone-input-2';
+import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import TimePicker from 'react-time-picker';
 
@@ -19,12 +19,12 @@ export const DateComp = (props) => {
         CallTrigger();
     }
     let Dob = dateState ? moment(dateState).format('MM/DD/YYYY') : '';
-    console.log(`appointment date: ${Dob}`);
+    // console.log(`appointment date: ${Dob}`);
     const CallTrigger = (e) => {
         props.triggerNextStep({ trigger: 'user_gender' })
     }
     return (<>
-        {Dob == '' ?
+        {Dob ==='' ?
             <Calendar value={Dob}
                 onChange={changeDate} />
             : <div>{Dob}</div>
@@ -41,14 +41,14 @@ export const ApptDate = (props) => {
     }
 
     let AptDt = aptDateState ? moment(aptDateState).format('MM/DD/YYYY') : '';
-    console.log(`appointment date: ${AptDt}`);
+    // console.log(`appointment date: ${AptDt}`);
 
     const CallTrigger = (e) => {
         props.triggerNextStep({ trigger: 'Patient_Time_slot' })
     }
 
     return (<>
-        {AptDt == '' ?
+        {AptDt === '' ?
             <Calendar value={AptDt}
                 onChange={changeDate} />
             : <div>{AptDt}</div>
@@ -109,6 +109,12 @@ export const  TimeSlotPicker = (props) =>{
         setFlag(true);
         props.triggerNextStep({ trigger: 'Thanking_msg' })
     }
+
+    // const EditTime = (e) =>{
+    //     settimeSlot('');
+    // }
+    // console.log(timeSlot);
+
     return (
         <>
         
@@ -117,13 +123,16 @@ export const  TimeSlotPicker = (props) =>{
             <TimePicker onChange={handleTimeChange}  value={timeSlot}  isOpen={false} hourPlaceholder="HH" minutePlaceholder="MM"  shouldOpenClock={({ reason="focus" }) => false} />
             </div>
               :
-              <div>Time-slot : {timeSlot}</div>}
+              <div>Time-slot : {timeSlot}
+               {/* <button onClick={EditTime}>Edit</button> */}
+                </div>}
         </>
     );
 }
 
 
 export const Loader = (props) =>{
+    console.log(props);
     return (<>
     <div >
    <center><ReactLoading type="spinningBubbles" color="#f5f8fb"  height={30} width={50} /></center>
