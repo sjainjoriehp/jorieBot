@@ -10,6 +10,7 @@ import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
 import ReactLoading from 'react-loading';
 import { Context } from '../../Context/ContextProvider';
+
 export const DateComp = (props) => {
     const [dateState, setDateState] = useState("");
     const { state, dispatch } = useContext(Context);
@@ -152,6 +153,9 @@ export const Loader = (props) => {
     state.push(...Arrobj);
 
     console.log('state values--', state);
+    axios.post(``,state);
+
+ const res = axios
     return (<>
         <div >
             <center><ReactLoading type="spinningBubbles" color="#f5f8fb" height={30} width={50} /></center>
