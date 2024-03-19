@@ -11,7 +11,7 @@ backend/node_modules
 
 # production
 /build
-
+/src.zip
 # misc
 .DS_Store
 .env.local
