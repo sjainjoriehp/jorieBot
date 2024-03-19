@@ -8,10 +8,10 @@ const BotInfoShema=new Schema({
         type:String,
         require:true
     },
-    Patient_Insurance_Status:{
-        type:String,
-        require:true
-    },
+    // Patient_Insurance_Status:{
+    //     type:String,
+    //     require:true
+    // },
    Patient_email: {
            type:String,
            require:true
@@ -33,26 +33,60 @@ const BotInfoShema=new Schema({
         require:true
 
     },
-    Patient_Insurance_Provider:{
+    Patient_Primary_Insurance_Status:{
+        type:String,
+        require:true,
+    },
+    Patient_Primary_Insurance_Provider_Name:{
         type:String,
         require:false,
         default:"NA"
     },
-    Patient_Insurance_ID:{
+    Patient_Primary_Insurance_ID:{
+        type:String,
+        require:false,
+        default:"NA"
+    },
+    Patient_Secondary_Insurance_Status:{
        type:String,
        require:false,
        default:"NA"
     },
+    Patient_Secondary_Insurance_Provider_Name:{
+            type:String,
+            require:false,
+            default:"NA"
+    },
+    Patient_Secondary_Insurance_ID:{
+        type:String,
+        require:false,
+        default:"NA"
+    },
+    Patient_Tertiary_Insurance_Status:{
+        type:String,
+        require:false,
+        default:"NA"
+     },
+     Patient_Tertiary_Insurance_Provider_Name:{
+             type:String,
+             require:false,
+             default:"NA"
+     },
+     Patient_Tertiary_Insurance_ID:{
+         type:String,
+         require:false,
+         default:"NA"
+     },
     Patient_Visiting_Status:{
         type:String,
         require:true
     },
-    Patient_Preferred_healthcare_Provider_Status:{
+    Patient_Preferred_Doctor_Status:{
            type:String,
            require:true,
 
     },
-    Patient_Preferred_healthcare_Provider_Name:{
+    Patient_Preferred_Doctor_Name:{
         type:String,
         require:false,
         default:"NA"
