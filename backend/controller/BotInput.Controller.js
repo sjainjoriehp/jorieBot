@@ -30,7 +30,7 @@ exports.AddBotInput= async (req, res) => {
 
       if (user?.length>0) {
         console.log(req.body)
-        return res.status(400).json({ error: "Sorry a Patient with this DOB already exists" })
+        return res.status(400).json({ error: "Sorry a Patient with this name already exists" })
       }
       
       
