@@ -15,11 +15,11 @@ exports.FetchAllBotInput=async (req, res) => {
 
         // }
 
-        const input = await BotInfo.find({ Details_Fetch_status:"false" });
+        const input = await BotInfo.find({ Details_Fetch_status_By_RPA:"false" });
         let allID=input.map((e)=>{
           return e._id
          })
-         const UpdateResult=await BotInfo.updateMany( { _id: { $in:allID}}, { $set: { Details_Fetch_status:"True" ,Details_Fetch_Time: new Date() } } )
+         const UpdateResult=await BotInfo.updateMany( { _id: { $in:allID}}, { $set: { Details_Fetch_status_By_RPA:"True" , Details_Fetch_Time_By_RPA: new Date() } } )
         
          if (input?.length > 0 && UpdateResult.modifiedCount >0 ) {
           return res.status(200).json({
@@ -37,7 +37,7 @@ exports.FetchAllBotInput=async (req, res) => {
                       TimeSlot:dat?.Patient_TimeSLot
                   }
               }),
-              message: `Patient detail's by id: ${id}.`
+              message: `Patient detail's `
           });
 
       } else {
