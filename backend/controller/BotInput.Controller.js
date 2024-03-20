@@ -5,14 +5,15 @@ const { body, validationResult, header } = require('express-validator');
 
 exports.FetchAllBotInput=async (req, res) => {
     try {
-        const tokenCompare = await bcrypt.compare(process.env.SECRET_TOKEN,req.header("token"));
-        if (!tokenCompare) {
-          return res.status(401).json({
-            status: 401,
-            message: `Please Authenticate with Valid Credentials.`
-        })
+        
+        // const tokenCompare = await bcrypt.compare(process.env.SECRET_TOKEN,req.header("token"));
+        // if (!tokenCompare) {
+        //   return res.status(401).json({
+        //     status: 401,
+        //     message: `Please Authenticate with Valid Credentials.`
+        // })
 
-        }
+        // }
 
         const input = await BotInfo.find({ Details_Fetch_status:"false" });
         let allID=input.map((e)=>{
@@ -58,11 +59,12 @@ exports.FetchAllBotInput=async (req, res) => {
 
 exports.AddBotInput= async (req, res) => {
     try {
-
-        const tokenCompare = await bcrypt.compare(process.env.SECRET_TOKEN,req.header("token"))
-      if (!tokenCompare) {
-        return res.status(409).json({ status: 409,error: "Please authenticate with valid token" })
-      }
+    //     let ans=req.get("authorization")
+    //     console.log("Token",ans.split(' ')[1])
+    //     const tokenCompare = await bcrypt.compare(process.env.SECRET_TOKEN,req.header("token"))
+    //   if (!tokenCompare) {
+    //     return res.status(409).json({ status: 409,error: "Please authenticate with valid token" })
+    //   }
          // Check whether the Patient with this email exists already
       let user = await BotInfo.find({ Patient_Name:req.body.Patient_Name });
 

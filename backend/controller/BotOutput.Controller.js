@@ -7,14 +7,14 @@ const ObjectId = require('mongodb').ObjectId;
 
 exports.FetchAllRPAOutput = async (req, res) => {
     try {
-        const tokenCompare = await bcrypt.compare(process.env.SECRET_TOKEN, req.header("token"));
-        if (!tokenCompare) {
-            return res.status(401).json({
-                status: 401,
-                message: `Please Authenticate with Valid Credentials.`
-            })
+        // const tokenCompare = await bcrypt.compare(process.env.SECRET_TOKEN, req.header("token"));
+        // if (!tokenCompare) {
+        //     return res.status(401).json({
+        //         status: 401,
+        //         message: `Please Authenticate with Valid Credentials.`
+        //     })
 
-        }
+        // }
 
         const input = await BotOutput.find({});
 
@@ -50,16 +50,15 @@ exports.FetchAllRPAOutput = async (req, res) => {
 
 
 
-exports.AddRPAOutput = async (req, res) => {
-    try {
+exports.AddRPAOutput = async (req, res) => {try {
 
-        const tokenCompare = await bcrypt.compare(process.env.SECRET_TOKEN, req.header("token"))
-        if (!tokenCompare) {
-            return res.status(409).json({ status: 409, error: "Please authenticate with valid token" })
-        }
+        // const tokenCompare = await bcrypt.compare(process.env.SECRET_TOKEN, req.header("token"))
+        // if (!tokenCompare) {
+        //     return res.status(409).json({ status: 409, error: "Please authenticate with valid token" })
+        // }
         // Check whether the Patient with this email exists already
         //  let o_id = new ObjectId(req.body.Patient_DB_ID)
-        let user = await BotInfo.findOne({ _id: req.body.Patient_DB_ID });
+        let user = await BotInfo.find({ _id: req.body.Patient_DB_ID });
 
         if (user?.length <= 0) {
             // console.log(req.body)

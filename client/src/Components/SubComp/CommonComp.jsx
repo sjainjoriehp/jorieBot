@@ -168,7 +168,7 @@ export const Loader =    (props) => {
 
     async function PatientDetails() {
         try{
-            const userAuthData_Token = "$2b$10$NjAWi4RnyE9dAMD/PTtz2.4Jl7/v0YeyV10LSHojyYJhTZnxpWlou";
+            const userAuthData_Token = "eyJhbGciOiJIUzI1NiJ9.SGVsbG8.8xiDCnB2Oc3uuP1763ySneTUU1Jn5Pe2N5yDzU7VczY";
             const response = await axios.post(`${process.env.REACT_APP_API_ROOT_URL}api/addInput`,PatientDetail,{headers: {"authorization" : `Bearer ${userAuthData_Token}` } });
         if (response.data.status === 201) {
             console.log(response.data);

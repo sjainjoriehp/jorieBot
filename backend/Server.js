@@ -4,6 +4,7 @@ const express = require('express')
 var cors = require('cors')
 const bcrypt=require('bcrypt')
 var app = express()
+var jwt = require('jsonwebtoken');
 
 app.use(cors())
 
@@ -14,6 +15,11 @@ app.use(cors())
 // const secPass = await bcrypt.hash(process.env.SECRET_TOKEN, salt);
 // const passwordCompare =await bcrypt.compare(process.env.SECRET_TOKEN,"$2b$10$NjAWi4RnyE9dAMD/PTtz2.4Jl7/v0YeyV10LSHojyYJhTZnxpWlou")
 // console.log(passwordCompare)
+//   let data={ user: {
+//     id: 123456
+//   }}
+//    let ans=await jwt.sign("Hello", process.env.SECRET_TOKEN);
+//     console.log("ans ",ans)
 // }
 
 // console.log("Secret key",encry())
