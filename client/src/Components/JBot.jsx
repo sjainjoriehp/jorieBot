@@ -30,7 +30,7 @@ function ChatModel() {
   };
 
   return <><ThemeProvider theme={theme}>   <ChatBot
-    steps={steps}  {...config} headerTitle="JORIE BOT" />  </ThemeProvider> </>;
+    steps={steps}  {...config} headerTitle={process.env.REACT_APP_PROJECT_NAME} />  </ThemeProvider> </>;
 }
 export default ChatModel;
 

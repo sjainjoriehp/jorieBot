@@ -10,6 +10,7 @@ import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
 import ReactLoading from 'react-loading';
 import { Context } from '../../Context/ContextProvider';
+import axios from "axios";
 
 export const DateComp = (props) => {
     const [dateState, setDateState] = useState("");
@@ -109,13 +110,11 @@ export const MobileNum = (props) => {
 export const TimeSlotPicker = (props) => {
     const [timeSlot, settimeSlot] = useState('');
     const { state, dispatch } = useContext(Context);
-    const [flag, setFlag] = useState(false);
     const handleTimeChange = (time) => {
         settimeSlot(time);
-        setFlag(true);
-        props.triggerNextStep({ trigger: 'Thanking_msg' });
-        let Patient_timeSlot = { 'Patinet_timeSlot_payload': timeSlot ? timeSlot : '' };
+        let Patient_timeSlot = { 'Patinet_timeSlot_payload': (time) ? time : '' };
         dispatch({ type: "Patinet_timeSlot", payload: Patient_timeSlot });
+        props.triggerNextStep({ trigger: 'Thanking_msg' }); 
     }
     return (
         <>
@@ -130,36 +129,70 @@ export const TimeSlotPicker = (props) => {
     );
 }
 
-export const Loader = (props) => {
+export const Loader =    (props) => {
     const { state, dispatch } = useContext(Context);
-    let Arrobj = [
-        { "Patinet_name": props?.steps?.user_input_for_name?.value },
-        { "Patinet_gender": props?.steps?.gendr?.value },
-        { "Patinet_address": props?.steps?.User_input_address?.value },
-        { "Patinet_emailid": props?.steps?.User_email?.value },
-        { "Is_Patinet_primary_HI": props?.steps?.HI_bool?.value },
-        { "Is_Patinet_MRN": props?.steps?.IS_MRN?.value },
-        { "IS_Patinet_Prefred_dr": props?.steps?.Prefred_dr?.value },
-        { "primary_insurance_provider_name": props?.steps?.User_input_HI_name?.value },
-        { "primary_insurance_provider_nameID": props?.steps?.User_input_PHI_id?.value },
-        { "Is_Patinet_Secoundry_HI": props?.steps?.Secoundry_InsuranceBool?.value },
-        { "secondary_insurance_provider_name": props?.steps?.User_secondary_Insurance_provider_name?.value },
-        { "secondary_insurance_provider_nameID": props?.steps?.User_secondary_Insurance_Id?.value },
-        { "Is_Patinet_Tertiary_HI": props?.steps?.TIB?.value },
-        { "tertiary_insurance_provider_name": props?.steps?.User_Tertiary_Insurance_provider_name?.value },
-        { "tertiary_insurance_provider_nameID": props?.steps?.Patient_Tertiary_Insurance_Id?.value },
-        { "Patinet_Prefred_drName": props?.steps?.Patient_appointmentDr?.value },
-    ];
-    state.push(...Arrobj);
+    const [flag,setFlag] = useState(false);
+    console.log(props);
+    let PatientDetail = {
+        "Patient_Name": props?.steps?.user_input_for_name?.value,
+        "Patient_email": props?.steps?.User_email?.value,
+        "Patient_Gender": props?.steps?.gendr?.value,
+        "Patient_DOB": (state[0]?.Patinet_DOB_payload) ? state[0]?.Patinet_DOB_payload : "NA",
+        "Patient_Address": (props?.steps?.User_input_address?.value) ? props?.steps?.User_input_address?.value :"NA",
+        "Patient_Phone": (state[1]?.Patinet_phone_payload) ? state[1]?.Patinet_phone_payload : "NA",
+        "Patient_Primary_Insurance_Status": (props?.steps?.HI_bool?.value) ? props?.steps?.HI_bool?.value : "NA",
+        "Patient_Primary_Insurance_Provider_Name": (props?.steps?.User_input_HI_name?.value) ? props?.steps?.User_input_HI_name?.value : "NA",
+        "Patient_Primary_Insurance_ID": (props?.steps?.User_input_PHI_id?.value) ?props?.steps?.User_input_PHI_id?.value : "NA",
+        "Patient_Secondary_Insurance_Status": (props?.steps?.Secoundry_InsuranceBool?.value) ? props?.steps?.Secoundry_InsuranceBool?.value :"NA",
+        "Patient_Secondary_Insurance_Provider_Name": (props?.steps?.User_secondary_Insurance_provider_name?.value) ? props?.steps?.User_secondary_Insurance_provider_name?.value : "NA",
+        "Patient_Secondary_Insurance_ID": (props?.steps?.User_secondary_Insurance_Id?.value) ? props?.steps?.User_secondary_Insurance_Id?.value :"NA",
+        "Patient_Tertiary_Insurance_Status": (props?.steps?.TIB?.value) ? props?.steps?.TIB?.value: "NA",
+        "Patient_Tertiary_Insurance_Provider_Name": (props?.steps?.User_Tertiary_Insurance_provider_name?.value) ? props?.steps?.User_Tertiary_Insurance_provider_name?.value :"NA",
+        "Patient_Tertiary_Insurance_ID": (props?.steps?.User_Tertiary_Insurance_Id?.value) ? props?.steps?.User_Tertiary_Insurance_Id?.value :"NA",
+        "Patient_Visiting_Status": (props?.steps?.IS_MRN?.value==false) ? "First Time Visit" : "Follow-up Visit",
+        "Patient_Preferred_Doctor_Status": (props?.steps?.Prefred_dr?.value==false) ? "NO":"YES",
+        "Patient_Preferred_Doctor_Name": (props?.steps?.Patient_appointmentDr?.value) ? props?.steps?.Patient_appointmentDr?.value : "NA",
+        "Patient_Date_Of_Visit": (state[2]?.Patinet_appointmentDate_payload) ? state[2]?.Patinet_appointmentDate_payload : "NA",
+        "Patient_TimeSLot": (state[3]?.Patinet_timeSlot_payload) ? state[3]?.Patinet_timeSlot_payload : "NA",
+    }
+    console.log('PatientDetail--', PatientDetail);
+   
+    // const userAuthData_Token = "token";
+    // const response = await axios.post(`apiurl`,PatientDetail,{headers: {"authorization" : `Bearer ${userAuthData_Token}` } });
+    // if (response.data.status === 201) {
+    //     console.log(response.data);
 
-    console.log('state values--', state);
-    axios.post(``,state);
+    // } else {
+    //     console.log(response.error);
+    // }
 
- const res = axios
+    async function PatientDetails() {
+        try{
+            const userAuthData_Token = "token";
+            const response = await axios.post(`${process.env.REACT_APP_API_ROOT_URL}api/addInput`,PatientDetail,{headers: {"authorization" : `Bearer ${userAuthData_Token}` } });
+        if (response.data.status === 201) {
+            console.log(response.data);
+            return response.data;
+        } else {
+            console.log(response.error);
+            return response.error;
+        }
+        } catch(error) {  
+            console.log(error.response);
+            return error.response;
+        }
+        
+    }
+
+    PatientDetails();
+
     return (<>
-        <div >
+        <div>
             <center><ReactLoading type="spinningBubbles" color="#f5f8fb" height={30} width={50} /></center>
-            <p>Your appointment has been booked on [preferred date] at [preferred time]. Your registration number is isa45543ss.</p>
+        <p> Please wait while we book the appointment for you.</p>
+
+            {/* <p>Your appointment has been booked on [preferred date] at [preferred time]. Your registration number is isa45543ss.</p> */}
+
         </div>
 
     </>);

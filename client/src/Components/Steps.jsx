@@ -391,7 +391,7 @@ export const steps = [
     },
     {
         id: "Thanking_msg",
-        message: "Thank you for your time. We have all the information we need. Please wait while we book the appointment for you",
+        message: "Thank you for your time. We have all the information we need.",
         trigger: "thnaking_msg2"
     },
     {
