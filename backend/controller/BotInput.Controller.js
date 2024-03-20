@@ -7,30 +7,68 @@ exports.FetchAllBotInput=async (req, res) => {
     try {
         const tokenCompare = await bcrypt.compare(process.env.SECRET_TOKEN,req.header("token"));
         if (!tokenCompare) {
-          return res.status(401).json({ error: "Please authenticate with valid token" })
+          return res.status(401).json({
+            status: 401,
+            message: `Please Authenticate with Valid Credentials.`
+        })
+
         }
 
-        const input = await BotInfo.find({ });
-        res.json(input)
+        const input = await BotInfo.find({ Details_Fetch_status:"false" });
+        let allID=input.map((e)=>{
+          return e._id
+         })
+         const UpdateResult=await BotInfo.updateMany( { _id: { $in:allID}}, { $set: { Details_Fetch_status:"True" ,Details_Fetch_Time: new Date() } } )
+        
+         if (input?.length > 0 && UpdateResult.modifiedCount >0 ) {
+          return res.status(200).json({
+              status: 200,
+              count: input?.length,
+              data: input.map((dat) => {
+                  return {
+                      id: dat?._id,
+                      Name: dat?.Patient_Name,
+                      Email: dat?.Patient_email,
+                      Phone: dat?.Patient_Phone,
+                      Address: dat?.Patient_Address,
+                      VisitingStatus:dat?.Patient_Visiting_Status,
+                      DateOfVisit:dat?.Patient_Date_Of_Visit,
+                      TimeSlot:dat?.Patient_TimeSLot
+                  }
+              }),
+              message: `Patient detail's by id: ${id}.`
+          });
+
+      } else {
+          return res.status(200).json({
+              status: 200,
+              count: 0,
+              data: [],
+              message: 'Patient list is Empty.'
+          });
+      }
+
     } catch (error) {
         console.error(error.message);
-        res.status(500).send("Internal Server Error");
+        return res.status(500).json({ status: 500, Error: err, message: 'Internal server Error !.' });
     }
 }
+
+
 
 exports.AddBotInput= async (req, res) => {
     try {
 
         const tokenCompare = await bcrypt.compare(process.env.SECRET_TOKEN,req.header("token"))
       if (!tokenCompare) {
-        return res.status(401).json({ error: "Please authenticate with valid token" })
+        return res.status(409).json({ status: 409,error: "Please authenticate with valid token" })
       }
          // Check whether the Patient with this email exists already
       let user = await BotInfo.find({ Patient_Name:req.body.Patient_Name });
 
       if (user?.length>0) {
-        console.log(req.body)
-        return res.status(400).json({ error: "Sorry a Patient with this name already exists" })
+        // console.log(req.body)
+        return res.status(400).json({ status:400,error: "Sorry a Patient with this name already exists" })
       }
       
       
@@ -42,16 +80,27 @@ exports.AddBotInput= async (req, res) => {
         // If there are errors, return Bad request and the errors
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
+            return res.status(400).json({status:400, errors: errors.array() });
         }
         const BotData = new BotInfo({...req.body})
         const savedData = await BotData.save()
 
-        res.json(savedData)
+        if (savedData) {
+          return res.status(201).json({
+              status: 201,
+              ID: savedData._id,
+              message: 'Patient response saved.'
+          });
+      } else {
+          return res.status(404).json({
+              status: 404,
+              message: 'Patient response not saved.'
+          });
+      }
 
     } catch (error) {
         console.error(error.message);
-        res.status(500).send("Internal Server Error");
+       return res.status(500).json({status:500,message:"Internal Server Error"});
     }
 }
 
