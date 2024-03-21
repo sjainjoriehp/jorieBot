@@ -120,7 +120,7 @@ export const steps = [
                 trigger: "PAddress"
             },
             {
-                id: "ptrans",
+                id: "gendr",
                 value: "transgender",
                 label: "Transgender",
                 trigger: "PAddress"
