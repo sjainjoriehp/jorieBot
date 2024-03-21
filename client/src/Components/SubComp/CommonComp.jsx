@@ -134,7 +134,7 @@ export const Loader =    (props) => {
     const [flag,setFlag] = useState(false);
     console.log(props);
     let PatientDetail = {
-        "Patient_Name": props?.steps?.user_input_for_name?.value,
+        "Patient_Name": props?.steps?.user_input_for_name?.value.trim(),
         "Patient_email": props?.steps?.User_email?.value,
         "Patient_Gender": props?.steps?.gendr?.value,
         "Patient_DOB": (state[0]?.Patinet_DOB_payload) ? state[0]?.Patinet_DOB_payload : "NA",
