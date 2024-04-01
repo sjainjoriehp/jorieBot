@@ -2,6 +2,7 @@ const BotInfo = require('../model/BotInfo.Model');
 const BotOutput = require('../model/BotOutput.Model')
 const bcrypt = require('bcrypt')
 const { body, validationResult, header } = require('express-validator');
+const logger=require('../utils/botInfoLogger')
 const ObjectId = require('mongodb').ObjectId;
 
 
@@ -19,6 +20,7 @@ exports.FetchAllRPAOutput = async (req, res) => {
         const input = await BotOutput.find({});
 
         if (input?.length > 0) {
+            logger.botInfoLogger.log('info','Successfully fetch all data submitted by RPA')
             return res.status(200).json({
                 status: 200,
                 count: input?.length,
@@ -34,6 +36,7 @@ exports.FetchAllRPAOutput = async (req, res) => {
             });
 
         } else {
+            logger.botInfoLogger.log('info','Successfully fetch data(Empty list) submitted by RPA')
             return res.status(200).json({
                 status: 200,
                 count: 0,
@@ -44,6 +47,7 @@ exports.FetchAllRPAOutput = async (req, res) => {
 
     } catch (error) {
         console.error(error.message);
+        logger.botInfoLogger.log('error','Error in fetching data submitted by RPA')
         return res.status(500).json({ status: 500, Error: err, message: 'Internal server Error !.' });
     }
 }
@@ -62,6 +66,7 @@ exports.AddRPAOutput = async (req, res) => {try {
 
         if (user?.length <= 0) {
             // console.log(req.body)
+            logger.botInfoLogger.log('info','Sorry patient details already exist submitted by RPA')
             return res.status(400).json({ status: 400, error: "Sorry a Patientis not Valid" })
         }
 
@@ -74,12 +79,14 @@ exports.AddRPAOutput = async (req, res) => {try {
         const savedData = await BotData.save()
 
         if (savedData) {
+            logger.botInfoLogger.log('info','Successfully added data submitted by RPA')
             return res.status(201).json({
                 status: 201,
                 ID: savedData._id,
                 message: 'RPA Output response saved.'
             });
         } else {
+            logger.botInfoLogger.log('warn','Somenthing went wrong in data submitted by RPA')
             return res.status(404).json({
                 status: 404,
                 message: 'RPA Output response not saved.'
@@ -87,6 +94,7 @@ exports.AddRPAOutput = async (req, res) => {try {
         }
 
     } catch (error) {
+        logger.botInfoLogger.log('error','Error in data submitted by RPA')
         console.error(error.message);
         return res.status(500).json({ status: 500, message: "Internal Server Error" });
     }

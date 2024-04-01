@@ -1,7 +1,7 @@
 const  BotInfo= require('../model/BotInfo.Model');
 const bcrypt=require('bcrypt')
 const { body, validationResult, header } = require('express-validator');
-
+let logger=require('../utils/botInfoLogger')
 
 exports.FetchAllBotInput=async (req, res) => {
     try {
@@ -22,6 +22,8 @@ exports.FetchAllBotInput=async (req, res) => {
          const UpdateResult=await BotInfo.updateMany( { _id: { $in:allID}}, { $set: { Details_Fetch_status_By_RPA:"True" , Details_Fetch_Time_By_RPA: new Date() } } )
         
          if (input?.length > 0 && UpdateResult.modifiedCount >0 ) {
+            //Logging into LogFile
+            logger.botInfoLogger.log('info','Successfully fetch all UserInput saved by BOT')
           return res.status(200).json({
               status: 200,
               count: input?.length,
@@ -41,17 +43,22 @@ exports.FetchAllBotInput=async (req, res) => {
           });
 
       } else {
+        logger.botInfoLogger.log('info','Successfully fetch (but no record found) UserInput saved by BOT')
           return res.status(200).json({
               status: 200,
               count: 0,
               data: [],
               message: 'Patient list is Empty.'
           });
+          
       }
 
-    } catch (error) {
+    } 
+    catch (error) {
         console.error(error.message);
+        logger.botInfoLogger.log('error','Error occured in fetch UserInput saved by BOT')
         return res.status(500).json({ status: 500, Error: err, message: 'Internal server Error !.' });
+       
     }
 }
 
@@ -82,6 +89,7 @@ exports.AddBotInput= async (req, res) => {
         // If there are errors, return Bad request and the errors
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
+            logger.botInfoLogger.log('error','Error occured in Add UserInput saved by BOT')
             return res.status(400).json({status:400, errors: errors.array() });
         }
         const BotData = new BotInfo({...req.body})
@@ -94,6 +102,7 @@ exports.AddBotInput= async (req, res) => {
               message: 'Patient response saved.'
           });
       } else {
+        logger.botInfoLogger.log('info','Successfully user response saved UserInput by BOT')
           return res.status(404).json({
               status: 404,
               message: 'Patient response not saved.'
@@ -102,6 +111,7 @@ exports.AddBotInput= async (req, res) => {
 
     } catch (error) {
         console.error(error.message);
+        logger.botInfoLogger.log('error','Error occured in Add UserInput saved by BOT')
        return res.status(500).json({status:500,message:"Internal Server Error"});
     }
 }
