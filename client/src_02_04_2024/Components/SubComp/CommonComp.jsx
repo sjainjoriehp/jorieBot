@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Calendar from 'react-calendar';
 import moment from 'moment';
 import 'react-calendar/dist/Calendar.css';
@@ -132,8 +132,6 @@ export const TimeSlotPicker = (props) => {
 export const Loader =    (props) => {
     const { state, dispatch } = useContext(Context);
     const [flag,setFlag] = useState(false);
-
-
     console.log(props);
     let PatientDetail = {
         "Patient_Name": props?.steps?.user_input_for_name?.value.trim(),
@@ -188,18 +186,7 @@ export const Loader =    (props) => {
 
     PatientDetails();
 
-    const[show,setshow] =useState(true)
-    
-    useEffect(()=>{
-      
-        setTimeout(()=>{
-          setshow(false)
-        },7000)
-
-    },[show])
-   
-
-    return (show ?  <>
+    return (<>
         <div>
             <center><ReactLoading type="spinningBubbles" color="#f5f8fb" height={30} width={50} /></center>
         <p> Please wait while we book the appointment for you.</p>
@@ -208,11 +195,5 @@ export const Loader =    (props) => {
 
         </div>
 
-    </> :<>
-    <div>
-       
-        <p>Your appointment has been scheduled for { (state[2]?.Patinet_appointmentDate_payload)} at {(state[3]?.Patinet_timeSlot_payload)} with Kulkarni Shantanu MD . <br/> Your reference # is 45543.</p>
-
-        </div>
     </>);
 }
