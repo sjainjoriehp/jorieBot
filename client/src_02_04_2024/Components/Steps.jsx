@@ -54,20 +54,20 @@ const BotData = () => {
 export const steps = [
     {
         id: "Greet",
-        message: "Welcome to Ortho one! I’m your Medical Appointment Assistant. How can I assist you today?",
+        message: "Hi there! I'm XYZ, your Medical Appointment Assistant. How can I assist you today?",
         trigger: "Greet1"
 
     },
     {
         id: "Greet1",
-        message: "Thank you for choosing our healthcare services. To schedule your appointment, could you please provide the following information?",
+        message: "Thank you for choosing our healthcare services. To help us schedule your appointment, could you please provide the following information?",
         trigger: "AskName",
         // trigger:"User_TimeSlot"
     },
 
     {
         id: "AskName",
-        message: "Please enter Patient’s Full Name ? (Last Name, First Name)",
+        message: "To get started, may I have the patient’s full name? ( Ex: LastName FirstName)",
         trigger: "user_input_for_name"
     },
     {
@@ -89,7 +89,7 @@ export const steps = [
     },
     {
         id: "user_Dob",
-        message: "Please enter Patient’s Date of Birth ?(MM/DD/YYYY)",
+        message: "Thanks, And could you share the patient’s date of birth?",
         trigger: "Patinet_DOB"
     },
     {
@@ -100,7 +100,7 @@ export const steps = [
 
     {
         id: "user_gender",
-        message: "Please enter Patient’s Gender ?",
+        message: "Great, lastly for now, could you tell me the patient’s gender?",
         trigger: "Gender"
     },
     {
@@ -132,7 +132,7 @@ export const steps = [
 
     {
         id: "PAddress",
-        message: "Please enter Patient’s Address ?(Full Address/ Zip Code/ State/ Country)",
+        message: "Awesome, now let's get into some specifics. What's the patient's address?(Format should be : Full Address/Zip Code/State/Country)",
         trigger: "User_input_address"
     },
     {
@@ -150,7 +150,7 @@ export const steps = [
     },
     {
         id: "Patients_phone",
-        message: "Please enter Patient’s Phone Number ?",
+        message: "Thanks! and what about the patient’s phone number ?",
         trigger: "User_input_phone"
     },
     {
@@ -159,7 +159,7 @@ export const steps = [
     },
     {
         id: "PatientEmail",
-        message: "Please enter Patient’s Email Address ?",
+        message: "Perfect! Do you happen to have the patient’s email address?",
         trigger: "User_email",
     },
     {
@@ -178,7 +178,7 @@ export const steps = [
     },
     {
         id: "Patient_HI",
-        message: "Does Patient have health insurance ?",
+        message: "Does the patient have Primary health insurance?",
         trigger: "User_HI"
     },
     {
@@ -200,7 +200,7 @@ export const steps = [
     },
     {
         id: "Patient_HI_name",
-        message: "Please provide the Insurance name ?",
+        message: "please provide the primary insurance provider's name ?",
         trigger: "User_input_HI_name"
     },
     {
@@ -218,14 +218,14 @@ export const steps = [
 
     {
         id: "HI_id",
-        message: "Please enter Member ID ?",
+        message: "Great, may I know the insurance ID ?",
         trigger: "User_input_PHI_id",
     },
 
     {
         id: "User_input_PHI_id",
         user: true,
-        trigger: "P_healthcareProvider"
+        trigger: "Patient_secondary_Insurance"
     },
     {
         id: "Patient_secondary_Insurance",
@@ -338,7 +338,7 @@ export const steps = [
     },
     {
         id: "P_healthcareProvider",
-        message: "Do you have a Preferred Healthcare Provider ?",
+        message: "Do you have a Preferred Doctor to book the appointment with?",
         trigger: "Validate_HI_provider"
     },
 
@@ -361,7 +361,7 @@ export const steps = [
     },
     {
         id: "P_HP_name",
-        message: "Please enter the Provider Name ?",
+        message: "Which Doctor would you like to book the appointment with ?",
         trigger: "Patient_appointmentDr"
     },
     {
@@ -371,7 +371,7 @@ export const steps = [
     },
     {
         id: "Patient_DOV",
-        message: "Preferred Date of Appointment ?",
+        message: "Lastly, what is your preferred date for the appointment ?",
         trigger: "User_DOV",
     },
     {
@@ -380,7 +380,7 @@ export const steps = [
     },
     {
         id: "Patient_Time_slot",
-        message: "Preferred Time of Appointment ?",
+        message: "And what is your preferred time for the appointment ?",
         trigger: "User_TimeSlot"
     },
     {
@@ -391,7 +391,7 @@ export const steps = [
     },
     {
         id: "Thanking_msg",
-        message: "Thank you for providing your information. Please wait while we are scheduling your appointment.",
+        message: "Thank you for your time. We have all the information we need.",
         trigger: "thnaking_msg2"
     },
     {
