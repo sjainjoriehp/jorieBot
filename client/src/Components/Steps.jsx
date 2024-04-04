@@ -361,7 +361,7 @@ export const steps = [
     },
     {
         id: "P_HP_name",
-        message: "Please enter the Provider Name ?",
+        message: "Please enter the Provider Name",
         trigger: "Patient_appointmentDr"
     },
     {
