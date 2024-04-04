@@ -1,12 +1,19 @@
-import React from "react";
-// import BotImg from '../../../public/botImg.png';
-// import {} from '../../Images/';
+import React, { useState } from "react";
+import JorieBot from '../../resources/JorieBot.png'
 const ChatIcon = () => {
-    const BotImgLable = "Welcome to OrthoOne, Click to get started.";
+    const [ChangeVisibility, setChangeVisibility] = useState('none');
+    // const BotImgLable = "Welcome to OrthoOne, Click to get started.";
+    const BotImgLable = "Your OrthOne assitant is here to help you!";
+    const AddElement = () => {
+        setChangeVisibility('block');
+    }
+    const RemoveElement = () => {
+        setChangeVisibility('none');
+    }
     return (
         <>
-        <div className="greetingBox">{BotImgLable}</div>
-       <img  style={{backgroundBlendMode: "lighten"}} src="https://icons.veryicon.com/png/128/education-technology/dr-ling-robot/robot-looking-down.png" width={100} height={100}/>
+            <div style={{ display: ChangeVisibility }} className="greetingBox" onMouseOver={AddElement} onMouseOut={RemoveElement}>{BotImgLable}</div>
+            <img className="botImgLb" src={JorieBot} onMouseOver={AddElement} onMouseOut={RemoveElement} alt='Chat Icon' />
         </>
     );
 };

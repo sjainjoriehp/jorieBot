@@ -32,6 +32,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -40,11 +41,16 @@
 
 /* css added by sandeep */
 
-.greetingBox{
+.bRPEjc {
+  background: #ffffff !important;
+  box-shadow: 0 12px 24px 0 #fff !important;
+}
+
+.greetingBox {
   border: 2px solid rgb(243, 239, 239);
   background-color: white;
-  color:   #0f89db;
-  font-size:  16px;
+  color: #0f89db;
+  font-size: 16px;
   width: auto;
   /* overflow: hidden; */
   white-space: nowrap;
@@ -52,21 +58,35 @@
   margin-left: -314px;
   padding-top: 20px;
   padding-left: 4px;
-  padding-right: 4px;
+  padding-right: 6px;
   height: 55px;
   border-radius: 8%;
-
+  margin-bottom: 115px;
 }
 
+.botImgLb  {
+  height: 150px;
+  width: 150px;
+  text-align: center;
+  padding-top: 2px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-left: -6px;
+  padding-bottom: 30px;
+}
 
-.botImgLb{
-  height:40%;
-  width:100%;
-  text-align:center;
-  padding-top:2px;
-  background-image:url(https://icons.veryicon.com/png/128/education-technology/dr-ling-robot/robot-looking-down.png);
-  background-size:100% auto;
-  }
+/* .sc-bwzfXH.jKLQUD.rsc-cs {
+  width: inherit !important;
+  height: auto !important;
+  margin-left: 236px !important;
+  border-radius: 18px 18px 0 18px !important;
+}
+
+.react-tel-input .form-control{
+  width: 216px !important;
+} */
+
+
 
 
 /* 
@@ -101,11 +121,3 @@
   width: 56px;
   z-index: 999;
 } */
-
-
-
-
-
-
-
-

@@ -87,7 +87,7 @@ export const MobileNum = (props) => {
         {
             (keyPress == false)
                 ?
-                <PhoneInput
+                <PhoneInput style={{ width: 'auto !important' }}  
                     country={'us'}
                     value={phone}
                     onEnterKeyPress={numberClick}

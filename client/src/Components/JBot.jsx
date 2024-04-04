@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { steps } from "./Steps";
 import ChatIcon from "./SubComp/ChatIcon";
 import userAvatar from '../resources/userAvatar.png'
-import botAvatar from '../resources/botAvatar.jpg'
+import botAvatar from '../resources/botAvatar.png'
 
 // get  the data  from local storage
 function ChatModel() {
