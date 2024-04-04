@@ -4,10 +4,13 @@ import { ContextProvider } from './Context/ContextProvider';
 import backgroundImg from './resources/background.png'
 
 function App() {
+
+
+
+
   return (
   <>
    <div >
-
    <ContextProvider>
    <JBot/>
    </ContextProvider>
