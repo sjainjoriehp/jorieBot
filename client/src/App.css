@@ -44,6 +44,9 @@
 .bRPEjc {
   background: #ffffff !important;
   box-shadow: 0 12px 24px 0 #fff !important;
+  width: 1px !important; 
+  height: 1px !important;
+
 }
 
 .greetingBox {
@@ -55,7 +58,9 @@
   /* overflow: hidden; */
   white-space: nowrap;
   text-align-last: left;
-  margin-left: -314px;
+  /* margin-left: -314px; */
+  margin-left:-347px;
+  
   padding-top: 20px;
   padding-left: 4px;
   padding-right: 6px;
@@ -64,7 +69,7 @@
   margin-bottom: 115px;
 }
 
-.botImgLb  {
+.botImgLb {
 
   height: 150px;
   width: 150px;
@@ -72,8 +77,8 @@
   padding-top: 2px;
   background-size: cover;
   background-repeat: no-repeat;
-  padding-left: -6px;
-  padding-bottom: 30px;
+  padding-bottom: 53px;
+  margin-left: -4px;
 }
 
 /* .sc-bwzfXH.jKLQUD.rsc-cs {
@@ -88,13 +93,12 @@
 } */
 
 
-.cs{
- 
+.cs {
+
 
   background-image: url('./resources/background.png');
   background-size: cover;
   background-repeat: no-repeat;
-  
+
   /* border: 10px solid black; */
 }
-
