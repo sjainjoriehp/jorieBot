@@ -1,6 +1,8 @@
 import props from 'prop-types';
 import moment from 'moment';
 import { DateComp, ApptDate, MobileNum, TimeSlotPicker, Loader } from './SubComp/CommonComp';
+import { useState } from 'react';
+import { Greetings } from './SubComp/Greetings';
 function SendEmail(props) {
     const { steps } = props;
     let obj = {
@@ -20,9 +22,13 @@ SendEmail.defaultProps = {
     steps: undefined,
 };
 
+
+
+
 const BotData = () => {
     const getData = localStorage.getItem('botValues');
     const ParseData = JSON.parse(getData);
+   
     // console.log(ParseData?.name);
     return (
         <>
@@ -51,7 +57,14 @@ const BotData = () => {
         </>
     );
 }
+
 export const steps = [
+    {
+          id:"InitialMsg",
+          asMessage:true,
+          component:<Greetings/>,
+          trigger:"Greet"
+    },
     {
         id: "Greet",
         message: "Welcome to Ortho one! I’m your Medical Appointment Assistant. How can I assist you today?",
@@ -60,14 +73,14 @@ export const steps = [
     },
     {
         id: "Greet1",
-        message: "Thank you for choosing our healthcare services. To schedule your appointment, could you please provide the following information?",
+        message: "Thank you for choosing our healthcare services. To schedule your appointment, could you please provide the following information",
         trigger: "AskName",
         // trigger:"User_TimeSlot"
     },
 
     {
         id: "AskName",
-        message: "Please enter Patient’s Full Name ? (Last Name, First Name)",
+        message: "Please enter Patient’s Full Name (Last Name, First Name)",
         trigger: "user_input_for_name"
     },
     {
@@ -89,7 +102,7 @@ export const steps = [
     },
     {
         id: "user_Dob",
-        message: "Please enter Patient’s Date of Birth ?(MM/DD/YYYY)",
+        message: "Please enter Patient’s Date of Birth (MM/DD/YYYY)",
         trigger: "Patinet_DOB"
     },
     {
@@ -100,7 +113,7 @@ export const steps = [
 
     {
         id: "user_gender",
-        message: "Please enter Patient’s Gender ?",
+        message: "Please enter Patient’s Gender ",
         trigger: "Gender"
     },
     {
@@ -132,7 +145,7 @@ export const steps = [
 
     {
         id: "PAddress",
-        message: "Please enter Patient’s Address ?(Full Address/ Zip Code/ State/ Country)",
+        message: "Please enter Patient’s Address (Full Address/ Zip Code/ State/ Country)",
         trigger: "User_input_address"
     },
     {
@@ -150,7 +163,7 @@ export const steps = [
     },
     {
         id: "Patients_phone",
-        message: "Please enter Patient’s Phone Number ?",
+        message: "Please enter Patient’s Phone Number ",
         trigger: "User_input_phone"
     },
     {
@@ -159,7 +172,7 @@ export const steps = [
     },
     {
         id: "PatientEmail",
-        message: "Please enter Patient’s Email Address ?",
+        message: "Please enter Patient’s Email Address ",
         trigger: "User_email",
     },
     {
@@ -200,7 +213,7 @@ export const steps = [
     },
     {
         id: "Patient_HI_name",
-        message: "Please provide the Insurance name ?",
+        message: "Please provide the Insurance name ",
         trigger: "User_input_HI_name"
     },
     {
@@ -218,7 +231,7 @@ export const steps = [
 
     {
         id: "HI_id",
-        message: "Please enter Member ID ?",
+        message: "Please enter Member ID ",
         trigger: "User_input_PHI_id",
     },
 
@@ -371,7 +384,7 @@ export const steps = [
     },
     {
         id: "Patient_DOV",
-        message: "Preferred Date of Appointment ?",
+        message: "Preferred Date of Appointment ",
         trigger: "User_DOV",
     },
     {
@@ -380,7 +393,7 @@ export const steps = [
     },
     {
         id: "Patient_Time_slot",
-        message: "Preferred Time of Appointment ?",
+        message: "Preferred Time of Appointment ",
         trigger: "User_TimeSlot"
     },
     {

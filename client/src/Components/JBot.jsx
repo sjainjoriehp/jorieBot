@@ -12,7 +12,7 @@ function ChatModel() {
   const theme = {
     background: '#f5f8fb',
     // fontFamily: 'Helvetica Neue',
-    fontFamily: 'monospace',
+    fontFamily: 'Calibri',
     headerBgColor: ' #0f89db',
     headerFontColor: '#fff',
     headerFontSize: '15px',

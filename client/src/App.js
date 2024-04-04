@@ -5,12 +5,9 @@ import backgroundImg from './resources/background.png'
 
 function App() {
 
-
-
-
   return (
   <>
-   <div >
+   <div className='cs'>
    <ContextProvider>
    <JBot/>
    </ContextProvider>

@@ -65,6 +65,7 @@
 }
 
 .botImgLb  {
+
   height: 150px;
   width: 150px;
   text-align: center;
@@ -88,10 +89,12 @@
 
 
 .cs{
-  /* border: 10px solid black; */
+ 
+
   background-image: url('./resources/background.png');
   background-size: cover;
   background-repeat: no-repeat;
-  width:250px ;
+  
+  /* border: 10px solid black; */
 }
 
