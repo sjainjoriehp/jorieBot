@@ -97,6 +97,11 @@
 
 
   background-image: url('./resources/background.png');
+  display: inline-block;
+  position: relative;
+  background-repeat: no-repeat;
+  
+  background-size: cover;
   /* background-size: cover;
   background-repeat: no-repeat; */
   

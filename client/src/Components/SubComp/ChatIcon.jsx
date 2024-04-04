@@ -21,7 +21,7 @@ const ChatIcon = () => {
 
     return (
         <>
-        <div style={{display:ChangeVisibility}} className="greetingBox" onMouseOver={AddElement} onMouseOut={RemoveElement}>{BotImgLable}</div>
+        <div style={{display:ChangeVisibility}} className="greetingBox" onMouseOver={AddElement} onMouseOut={RemoveElement}  onClick={ImageChanger} >{BotImgLable}</div>
        <img  className="botImgLb"   src={JorieBot} onMouseOver={AddElement} onMouseOut={RemoveElement} alt='Chat Icon'/>
         </>
     );

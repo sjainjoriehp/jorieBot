@@ -7,7 +7,7 @@ function App() {
 
   return (
   <>
-   <div className='cs'>
+   <div >
    <ContextProvider>
    <JBot/>
    </ContextProvider>
