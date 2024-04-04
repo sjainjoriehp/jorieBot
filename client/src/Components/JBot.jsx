@@ -22,8 +22,6 @@ function ChatModel() {
     userFontColor: '#4a4a4a',
   };
 
-
-   
   const config = {
     width: "500px",
     // recognitionEnable:true,
