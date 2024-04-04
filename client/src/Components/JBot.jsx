@@ -6,6 +6,8 @@ import { steps } from "./Steps";
 import ChatIcon from "./SubComp/ChatIcon";
 import userAvatar from '../resources/userAvatar.png'
 import botAvatar from '../resources/botAvatar.jpg'
+import {HeaderTitle} from './HeaderTitle'
+
 
 // get  the data  from local storage
 function ChatModel() {
@@ -33,12 +35,12 @@ function ChatModel() {
     floating: true,
     // opened:true,
     floatingIcon: <ChatIcon />,
-     botAvatar: botAvatar,
+    botAvatar: botAvatar,
     userAvatar: userAvatar,
   };
 
   return <><ThemeProvider theme={theme}>   <ChatBot
-    steps={steps}  {...config} headerTitle={process.env.REACT_APP_PROJECT_NAME}  />  </ThemeProvider> </>;
+    steps={steps}  {...config} headerTitle={<HeaderTitle />}  />  </ThemeProvider> </>;
 }
 export default ChatModel;
 
