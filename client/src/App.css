@@ -81,8 +81,8 @@
  
 
   background-image: url('./resources/background.png');
-  background-size: cover;
-  background-repeat: no-repeat;
+  /* background-size: cover;
+  background-repeat: no-repeat; */
   
   /* border: 10px solid black; */
 }
