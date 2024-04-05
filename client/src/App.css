@@ -122,12 +122,28 @@
   color: white;
 }
 
-
-
 .call_center_avtar{
-  width: 100px;
-  height: 60px;
-  border-radius: 50px
+  width: 115px;
+  height: 112px;
+}
+
+.Btn_img_aptBook{
+  /* background-color: #61dafb; */
+  height: fit-content;
+  width: max-content;
+ 
+}
+
+.left {
+  text-align: left
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
 }
 /* CSS end by sandeep */
 
