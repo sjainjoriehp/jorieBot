@@ -3,7 +3,7 @@ import CallCenterAvtar from "../../resources/CallCenterAvatar.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
     faCheckSquare, faCoffee,faHeadphones,faUserSecret,
-    faCloudUploadAlt, faUserHeadset,faUserNinja,faUserMinus
+    faCloudUploadAlt, faUserHeadset,faUserNinja,faUserTimes
 } from '@fortawesome/fontawesome-free-solid'
 export const BookApointmentBtn = (props) => {
     const BookApt = () => {
@@ -15,6 +15,7 @@ export const BookApointmentBtn = (props) => {
             {/* <span><img className="call_center_avtar right" src={CallCenterAvtar} /> </span> */}
             <FontAwesomeIcon icon={faUserSecret} />
             <FontAwesomeIcon icon={faCloudUploadAlt} />
+            <FontAwesomeIcon icon="fad fa-user-headset" />
         </div>
 
     </>);
