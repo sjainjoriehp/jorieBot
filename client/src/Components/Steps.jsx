@@ -265,7 +265,7 @@ export const steps = [
     },
     {
         id: "Patient_secondary_Insurance_provider_name",
-        message: "please provide the Secondary insurance provider's name",
+        message: "please provide the Secondary insurance provider's name ?",
         trigger: "User_secondary_Insurance_provider_name"
     },
     {
@@ -307,7 +307,7 @@ export const steps = [
     },
     {
         id: "Patient_Tertiary_Insurance_provider_name",
-        message: "Furthermore,please provide the Tertiary insurance provider's name ",
+        message: "Furthermore,please provide the Tertiary insurance provider's name ?",
         trigger: "User_Tertiary_Insurance_provider_name"
     },
     {
