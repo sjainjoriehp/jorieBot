@@ -3,6 +3,7 @@ import moment from 'moment';
 import { DateComp, ApptDate, MobileNum, TimeSlotPicker, Loader } from './SubComp/CommonComp';
 import { useState } from 'react';
 import { Greetings } from './SubComp/Greetings';
+import { BookApointmentBtn } from './SubComp/CustomService';
 function SendEmail(props) {
     const { steps } = props;
     let obj = {
@@ -74,10 +75,14 @@ export const steps = [
     {
         id: "Greet1",
         message: "Thank you for choosing our healthcare services.",
-        trigger: "AskName",
-        // trigger:"User_TimeSlot"
+        // trigger: "AskName",
+        trigger:"BookBtn"
     },
+    {
+        id:"BookBtn",
+        component: <BookApointmentBtn />
 
+    },
     {
         id: "AskName",
         message: "Please enter Patient’s Full Name (Last Name, First Name)",
