@@ -40,7 +40,6 @@
 
 
 /* css added by sandeep */
-
 .bRPEjc {
   background: #ffffff !important;
   box-shadow: 0 12px 24px 0 #fff !important;
@@ -91,6 +90,47 @@
 .react-tel-input .form-control{
   width: 216px !important;
 } */
+
+
+
+
+.Appointment_btn{
+  animation: Lmuha 0.3s ease forwards;
+  border-color: #2196F3;
+  background-color: white;
+  font-size: 14px;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid black;
+  border-radius: 9px 9px 9px 9px;
+  box-shadow: 0 1px 2px 0 #fff;
+  width: auto;
+  height: 55px;
+  display: inline-block;
+  font-weight: bold;
+  /* border-style: none;  */
+  cursor: pointer;
+  /* font-family: Calibri; */
+}
+.Appointment_btn {
+  border-color: #2196F3;
+  color: dodgerblue;
+}
+
+.Appointment_btn:hover {
+  background: #2196F3;
+  color: white;
+}
+
+
+
+.call_center_avtar{
+  width: 100px;
+  height: 60px;
+  border-radius: 50px
+}
+/* CSS end by sandeep */
+
 
 
 .cs {
