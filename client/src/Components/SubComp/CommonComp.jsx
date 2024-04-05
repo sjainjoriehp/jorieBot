@@ -212,7 +212,7 @@ export const Loader =    (props) => {
     </> :<>
     <div>
        
-        <p>Your appointment is scheduled for { (state[2]?.Patinet_appointmentDate_payload)} at {(state[3]?.Patinet_timeSlot_payload)} with Kulkarni Shantanu MD  <br/> Your reference # is 45543.</p>
+        <p>Your appointment is scheduled for { (state[2]?.Patinet_appointmentDate_payload)} at {(state[3]?.Patinet_timeSlot_payload)} with Kulkarni Shantanu MD.  <br/> Your reference # is 45543.</p>
 
         </div>
     </>);

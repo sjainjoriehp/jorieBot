@@ -1,5 +1,6 @@
 import React from "react";
-import CallCenterAvtar from "../../resources/CallCenterAvatar.jpg"
+import CallCenterAvtar from "../../resources/CallCenterAvatar.png"
+
 export const BookApointmentBtn = (props) => {
     const BookApt = () =>{
         props.triggerNextStep({ trigger: 'AskName' }); 
