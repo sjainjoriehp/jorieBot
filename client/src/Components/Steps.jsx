@@ -67,13 +67,13 @@ export const steps = [
     },
     {
         id: "Greet",
-        message: "Welcome to Ortho one! I’m your Medical Appointment Assistant. How can I assist you today?",
+        message: "I’m OneD, your friend and help through our services. Let me setup an appointment for you.",
         trigger: "Greet1"
 
     },
     {
         id: "Greet1",
-        message: "Thank you for choosing our healthcare services. To schedule your appointment, could you please provide the following information",
+        message: "Thank you for choosing our healthcare services.",
         trigger: "AskName",
         // trigger:"User_TimeSlot"
     },
@@ -207,7 +207,7 @@ export const steps = [
                 id: "HI_bool",
                 value: false,
                 label: "No",
-                trigger: "PVisiting"
+                trigger: "Patient_HI_name"
             },
         ],
     },
