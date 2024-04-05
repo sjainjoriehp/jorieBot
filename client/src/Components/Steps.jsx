@@ -412,7 +412,22 @@ export const steps = [
         // message:"please wait.....while we book the appointment for you.",
         component: <Loader />,
         asMessage: true,
-        end: true
+       
+    },
+    {
+        id:"thnaking_msg3",
+        message:"Check your inbox for my confirmation email.",
+        trigger:"thnaking_msg4"
+    },
+    {
+        id:"thnaking_msg4",
+        message:" See you then! ",
+        trigger:"thnaking_msg5"
+    },
+    {
+        id:"thnaking_msg5",
+        message:" Happy to help you.",
+        end:true
     }
 
 

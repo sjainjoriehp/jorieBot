@@ -194,6 +194,7 @@ export const Loader =    (props) => {
       
         setTimeout(()=>{
           setshow(false)
+          props.triggerNextStep({ trigger: 'thnaking_msg3' })
         },7000)
 
     },[show])
