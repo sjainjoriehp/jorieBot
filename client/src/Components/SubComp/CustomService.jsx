@@ -1,8 +1,11 @@
 import React from "react";
 
-export const BookApointmentBtn = () => {
+export const BookApointmentBtn = (props) => {
+    const BookApt = () =>{
+        props.triggerNextStep({ trigger: 'AskName' }); 
+    }
     return (<>
 
-        <button>Book Apointment</button>
+        <button className="Appointment_btn" onClick={BookApt}>Book An Appointment</button>
     </>);
 }
