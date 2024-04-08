@@ -13,7 +13,11 @@ export const BookApointmentBtn = (props) => {
         <div className="Btn_img_aptBook">
             <button className="Appointment_btn left" onClick={BookApt}>Book an Appointment</button>
             <span><img className="call_center_avtar right" src={CallCenterAvtar} /> </span>
+<<<<<<< HEAD
             {/* <FontAwesomeIcon  icon={faUserSecret} />
+=======
+            {/* <FontAwesomeIcon icon={faUserSecret} />
+>>>>>>> 3501c422ae40e402253df40c19f0cc6ec70f0a32
             <FontAwesomeIcon icon={faCloudUploadAlt} />
             <FontAwesomeIcon icon="fad fa-user-headset" /> */}
         </div>
