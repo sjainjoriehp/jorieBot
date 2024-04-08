@@ -114,7 +114,7 @@ export const TimeSlotPicker = (props) => {
         settimeSlot(time);
         let Patient_timeSlot = { 'Patinet_timeSlot_payload': (time) ? time : '' };
         dispatch({ type: "Patinet_timeSlot", payload: Patient_timeSlot });
-        props.triggerNextStep({ trigger: 'Thanking_msg' }); 
+        props.triggerNextStep({ trigger: 'UserInputValuesTable' }); 
     }
     return (
         <>
@@ -194,7 +194,7 @@ export const Loader =    (props) => {
       
         setTimeout(()=>{
           setshow(false)
-          props.triggerNextStep({ trigger: 'thnaking_msg3' })
+          props.triggerNextStep({ trigger: 'HighFiveMsg' })
         },7000)
 
     },[show])

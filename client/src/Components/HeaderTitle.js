@@ -11,7 +11,7 @@ export let HeaderTitle = () => {
           
           <div style={{ width: "100%",height: "auto"}} >
             {/* <span ><img src={headerLogo}></img>&nbsp;</span> */}
-          <span style={{ color: "#02FB11 " }}>●&nbsp;</span>Online
+          <span style={{ color: "#02FB11 ",marginLeft:"52px" }}>●&nbsp;</span>Online
           </div>
 
 
