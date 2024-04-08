@@ -114,7 +114,8 @@ export const TimeSlotPicker = (props) => {
         settimeSlot(time);
         let Patient_timeSlot = { 'Patinet_timeSlot_payload': (time) ? time : '' };
         dispatch({ type: "Patinet_timeSlot", payload: Patient_timeSlot });
-        props.triggerNextStep({ trigger: 'UserInputValuesTable' }); 
+        // props.triggerNextStep({ trigger: 'UserInputValuesTable' }); 
+        props.triggerNextStep({ trigger: 'TVCMsg' }); 
     }
     return (
         <>

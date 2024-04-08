@@ -87,7 +87,7 @@ export const steps = [
     {
         id:"GreateMsg",
         component: <GifGreatAfterBtn />,
-        // asMessage:true
+        asMessage:true
 
     },
 
@@ -464,16 +464,16 @@ export const steps = [
     {
            id:"HighFiveMsg",
            component:<GifHighFiveAfterBook/>,
-        //    asMessage:true
+            asMessage:true
     },
     {
         id:"thnaking_msg3",
-        message:"Check your inbox for my confirmation email.",
+        message:" Hey Congratulations!!!",
         trigger:"thnaking_msg4"
     },
     {
         id:"thnaking_msg4",
-        message:" See you then! ",
+        message:" Check your inbox for my confirmation email. ",
         trigger:"thnaking_msg5"
     },
     {
