@@ -99,13 +99,16 @@
 /*  child node process for a  custom  input design Start */
 /* .rsc-content div:nth-child(4), */
 /* .rsc-content div:nth-child(5) */
-    .rsc-content div:nth-child(15)
+    
+
+.rsc-content div:nth-child(4)
     {
-   width: 100% !important ;
-   height: auto !important;
-   margin-left: 236px !important;
-   border-radius: 18px 18px 0 18px !important;
+       /* margin-left: 16%; */
+   
     }
+
+
+
     .react-tel-input .form-control{
       width: 216px !important;
     }

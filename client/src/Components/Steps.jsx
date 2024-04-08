@@ -3,7 +3,7 @@ import moment from 'moment';
 import { DateComp, ApptDate, MobileNum, TimeSlotPicker, Loader } from './SubComp/CommonComp';
 import { useState } from 'react';
 import { Greetings } from './SubComp/Greetings';
-import { BookApointmentBtn, GifGreatAfterBtn, GifHighFiveAfterBook, UserInputValuesTable } from './SubComp/CustomService';
+import { BookApointmentBtn, CongtratsMsg, GifGreatAfterBtn, GifHighFiveAfterBook, UserInputValuesTable } from './SubComp/CustomService';
 function SendEmail(props) {
     const { steps } = props;
     let obj = {
@@ -468,8 +468,9 @@ export const steps = [
     },
     {
         id:"thnaking_msg3",
-        message:" Hey Congratulations!!!",
-        trigger:"thnaking_msg4"
+        asMessage:true,
+        component:<CongtratsMsg/>
+        
     },
     {
         id:"thnaking_msg4",
