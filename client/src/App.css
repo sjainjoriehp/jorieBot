@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: Calibri;
 }
 
 .App-logo {
@@ -39,12 +40,14 @@
 }
 
 
+
 /* css added by sandeep  START*/
 .bRPEjc {
   background: #ffffff !important;
   box-shadow: 0 12px 24px 0 #fff !important;
   width: 1px !important; 
   height: 1px !important;
+ 
 
 }
 
@@ -85,6 +88,8 @@
   height: auto !important;
   margin-left: 236px !important;
   border-radius: 18px 18px 0 18px !important;
+   font-family: Calibri;
+   font-size: 14px;
 }
  
 .react-tel-input .form-control{
@@ -108,8 +113,9 @@
 
 
 .Appointment_btn{
+  
   animation: Lmuha 0.3s ease forwards;
-  border-color: #2196F3;
+  border-color: white;
   background-color: white;
   font-size: 14px;
   overflow: hidden;
