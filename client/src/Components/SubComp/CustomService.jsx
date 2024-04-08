@@ -12,10 +12,10 @@ export const BookApointmentBtn = (props) => {
     return (<>
         <div className="Btn_img_aptBook">
             <button className="Appointment_btn left" onClick={BookApt}>Book an Appointment</button>
-            {/* <span><img className="call_center_avtar right" src={CallCenterAvtar} /> </span> */}
-            <FontAwesomeIcon icon={faUserSecret} />
+            <span><img className="call_center_avtar right" src={CallCenterAvtar} /> </span>
+            {/* <FontAwesomeIcon  icon={faUserSecret} />
             <FontAwesomeIcon icon={faCloudUploadAlt} />
-            <FontAwesomeIcon icon="fad fa-user-headset" />
+            <FontAwesomeIcon icon="fad fa-user-headset" /> */}
         </div>
 
     </>);
