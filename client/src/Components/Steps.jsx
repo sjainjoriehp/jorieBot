@@ -85,11 +85,12 @@ export const steps = [
 
     },
     {
-        id:"GreetGif",
-        component:<GifGreatAfterBtn/>,
-        trigger:"AskName"
-    }
-    ,
+        id:"GreateMsg",
+        component: <GifGreatAfterBtn />,
+        // asMessage:true
+
+    },
+
     {
         id: "AskName",
         message: "Please enter Patient’s Full Name (Last Name, First Name)",
