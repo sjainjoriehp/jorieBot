@@ -6,7 +6,9 @@ import {
     faCloudUploadAlt, faUserHeadset, faUserNinja, faUserTimes
 } from '@fortawesome/fontawesome-free-solid'
  import GreetGif from '../../resources/gifgit.gif'
+ import HighFiveGif from '../../resources/c6a3b285-860a-4c53-869a-72073bab2005.gif'
 import '../../../src/customService.css'
+
 
 
 export const BookApointmentBtn = (props) => {
@@ -39,12 +41,12 @@ export const GifGreatAfterBtn = (props) => {
     GifGreate();
   },[]);
     return (<>
-  {/* <div className="content">
-  <h5 className="text_shadows"  >Greate</h5>
-</div> */}
+  <div >
+  <img src={GreetGif} ></img>
+</div>
 
 
-<section className="loading-data">
+{/* <section className="loading-data">
   <h2 className="loading-text text-center text-uppercase">
     <span className="char" style={{color:"white"}}>G</span>&nbsp;
     <span className="char" style={{color:"#f5a706"}}>R</span>&nbsp;
@@ -52,7 +54,7 @@ export const GifGreatAfterBtn = (props) => {
     <span className="char"style={{color:"white"}}>A</span>&nbsp;
     <span className="char" style={{color:"#f5a706"}} >T</span>&nbsp;
   </h2>
-</section>
+</section> */}
 
     </>);
 }
@@ -68,12 +70,12 @@ export const GifHighFiveAfterBook = (props) => {
     GifGreate();
   },[]);
     return (<>
-  {/* <div className="content">
-  <h5 className="text_shadows"  >Greate</h5>
-</div> */}
+  <div >
+  <img src={HighFiveGif} ></img>
+  </div> 
 
 
-<section className="loading-data">
+{/* <section className="loading-data">
   <h2 className="loading-text text-center text-uppercase">
     <span className="char" style={{color:"#0f89db"}}>H</span>
     <span className="char" style={{color:"#f5a706"}}>I</span>
@@ -84,7 +86,7 @@ export const GifHighFiveAfterBook = (props) => {
     <span className="char" style={{color:"red"}}>V</span>
     <span className="char"style={{color:"#0f89db"}}>E</span>
   </h2>
-</section>
+</section> */}
 
     </>);
 }
