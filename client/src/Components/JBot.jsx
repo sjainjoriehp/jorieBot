@@ -33,6 +33,7 @@ function ChatModel() {
     floatingIcon: <ChatIcon />,
     botAvatar: botAvatar,
     userAvatar: userAvatar,
+    botDelay:2000
   };
 
   return <><ThemeProvider theme={theme}>   <ChatBot
