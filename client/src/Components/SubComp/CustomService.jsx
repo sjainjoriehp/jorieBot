@@ -46,11 +46,11 @@ export const GifGreatAfterBtn = (props) => {
 
 <section className="loading-data">
   <h2 className="loading-text text-center text-uppercase">
-    <span className="char" style={{color:"#0f89db"}}>G</span>
-    <span className="char" style={{color:"#f5a706"}}>R</span>
-    <span className="char" style={{color:"red"}}>E</span>
-    <span className="char"style={{color:"#0f89db"}}>A</span>
-    <span className="char" style={{color:"#f5a706"}} >T</span>
+    <span className="char" style={{color:"white"}}>G</span>&nbsp;
+    <span className="char" style={{color:"#f5a706"}}>R</span>&nbsp;
+    <span className="char" style={{color:"red"}}>E</span>&nbsp;
+    <span className="char"style={{color:"white"}}>A</span>&nbsp;
+    <span className="char" style={{color:"#f5a706"}} >T</span>&nbsp;
   </h2>
 </section>
 

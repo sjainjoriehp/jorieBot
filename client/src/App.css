@@ -92,9 +92,10 @@
 }
 
 /*  child node process for a  custom  input design Start */
-
-    .rsc-content div:nth-child(4),.rsc-content div:nth-child(15),
-    .rsc-content div:nth-child(5){
+/* .rsc-content div:nth-child(4), */
+/* .rsc-content div:nth-child(5) */
+    .rsc-content div:nth-child(15)
+    {
    width: 100% !important ;
    height: auto !important;
    margin-left: 236px !important;
@@ -130,8 +131,11 @@
 }
 
 .Appointment_btn:hover {
-  background: #2196F3;
-  color: white;
+  /* background: #2196F3; */
+  background-color: white;
+  color: dodgerblue;
+  /* color: white; */
+  
   /* border-color: #2196F3;
   color: dodgerblue; */
 }
