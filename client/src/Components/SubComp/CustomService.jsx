@@ -112,6 +112,28 @@ export const UserInputValuesTable=(props)=>{
 
 
 
+export const CongtratsMsg=(props)=>{
+
+
+  useEffect(()=>{
+    setTimeout(()=>{
+        props.triggerNextStep({ trigger: 'thnaking_msg5' });
+
+    },1000)
+  },[])
+ 
+  return (
+    <>
+    <div>
+      <span>Hey Congratulations!!! <br/>
+      Check your inbox for my confirmation email.
+      </span>
+    </div>
+    </>
+  )
+
+}
+
 
 
 
