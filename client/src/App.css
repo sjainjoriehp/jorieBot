@@ -120,17 +120,21 @@
 .Appointment_btn:hover {
   background: #2196F3;
   color: white;
+  /* border-color: #2196F3;
+  color: dodgerblue; */
 }
 
 .call_center_avtar{
-  width: 115px;
-  height: 112px;
+  width: 29px;
+  height: 40px;
+
 }
 
 .Btn_img_aptBook{
   /* background-color: #61dafb; */
   height: fit-content;
   width: max-content;
+  background-blend-mode: darken;
  
 }
 

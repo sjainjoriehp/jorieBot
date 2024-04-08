@@ -80,7 +80,8 @@ export const steps = [
     },
     {
         id:"BookBtn",
-        component: <BookApointmentBtn />
+        component: <BookApointmentBtn />,
+        // asMessage: true,
 
     },
     {

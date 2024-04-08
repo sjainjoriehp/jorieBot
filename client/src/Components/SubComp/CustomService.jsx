@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CallCenterAvtar from "../../resources/CallCenterAvatar.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
@@ -6,16 +6,17 @@ import {
     faCloudUploadAlt, faUserHeadset,faUserNinja,faUserTimes
 } from '@fortawesome/fontawesome-free-solid'
 export const BookApointmentBtn = (props) => {
+    const [DisbleBtn, setDisbleBtn] = useState(false);
     const BookApt = () => {
         props.triggerNextStep({ trigger: 'AskName' });
+        setDisbleBtn(true);
+
     }
     return (<>
         <div className="Btn_img_aptBook">
-            <button className="Appointment_btn left" onClick={BookApt}>Book an Appointment</button>
-            <span><img className="call_center_avtar right" src={CallCenterAvtar} /> </span>
-            {/* <FontAwesomeIcon icon={faUserSecret} />
-            <FontAwesomeIcon icon={faCloudUploadAlt} />
-            <FontAwesomeIcon icon="fad fa-user-headset" /> */}
+            <button className="Appointment_btn left" onClick={BookApt} disabled={DisbleBtn} >
+                Book an Appointment &nbsp;<img className="call_center_avtar right" src={CallCenterAvtar}  />
+            </button>
         </div>
 
     </>);
