@@ -6,6 +6,7 @@ import {
     faCloudUploadAlt, faUserHeadset, faUserNinja, faUserTimes
 } from '@fortawesome/fontawesome-free-solid'
  import GreetGif from '../../resources/gifgit.gif'
+import '../../../src/customService.css'
 
 
 export const BookApointmentBtn = (props) => {
@@ -43,15 +44,74 @@ export const GifGreatAfterBtn = (props) => {
 </div> */}
 
 
-<section class="loading-data">
-  <h2 class="loading-text text-center text-uppercase">
-    <span class="char" style={{color:"#0f89db"}}>G</span>
-    <span class="char" style={{color:"#f5a706"}}>R</span>
-    <span class="char" style={{color:"red"}}>E</span>
-    <span class="char"style={{color:"#0f89db"}}>A</span>
-    <span class="char" style={{color:"#f5a706"}} >T</span>
+<section className="loading-data">
+  <h2 className="loading-text text-center text-uppercase">
+    <span className="char" style={{color:"#0f89db"}}>G</span>
+    <span className="char" style={{color:"#f5a706"}}>R</span>
+    <span className="char" style={{color:"red"}}>E</span>
+    <span className="char"style={{color:"#0f89db"}}>A</span>
+    <span className="char" style={{color:"#f5a706"}} >T</span>
   </h2>
 </section>
 
     </>);
 }
+
+
+export const GifHighFiveAfterBook = (props) => {
+    
+    const GifGreate = () => {
+        props.triggerNextStep({ trigger: 'thnaking_msg3' });
+
+    }
+  useEffect(()=>{
+    GifGreate();
+  },[]);
+    return (<>
+  {/* <div className="content">
+  <h5 className="text_shadows"  >Greate</h5>
+</div> */}
+
+
+<section className="loading-data">
+  <h2 className="loading-text text-center text-uppercase">
+    <span className="char" style={{color:"#0f89db"}}>H</span>
+    <span className="char" style={{color:"#f5a706"}}>I</span>
+    <span className="char" style={{color:"red"}}>G</span>
+    <span className="char"style={{color:"#0f89db"}}>H</span>
+    <span className="char" style={{color:"#f5a706"}} >F</span>
+    <span className="char" style={{color:"#f5a706"}}>I</span>
+    <span className="char" style={{color:"red"}}>V</span>
+    <span className="char"style={{color:"#0f89db"}}>E</span>
+  </h2>
+</section>
+
+    </>);
+}
+
+
+
+export const UserInputValuesTable=(props)=>{
+
+  useEffect(()=>{
+    setTimeout(()=>{
+        props.triggerNextStep({ trigger: 'TVCMsg' });
+
+    },1000)
+  },[])
+     
+         
+       
+
+    return(
+        <>
+        <h1>Table Values</h1>
+        </>
+    )
+}
+
+
+
+
+
+

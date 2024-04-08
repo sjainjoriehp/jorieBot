@@ -3,7 +3,7 @@ import moment from 'moment';
 import { DateComp, ApptDate, MobileNum, TimeSlotPicker, Loader } from './SubComp/CommonComp';
 import { useState } from 'react';
 import { Greetings } from './SubComp/Greetings';
-import { BookApointmentBtn, GifGreatAfterBtn } from './SubComp/CustomService';
+import { BookApointmentBtn, GifGreatAfterBtn, GifHighFiveAfterBook, UserInputValuesTable } from './SubComp/CustomService';
 function SendEmail(props) {
     const { steps } = props;
     let obj = {
@@ -416,6 +416,40 @@ export const steps = [
 
     },
     {
+        id:"UserInputValuesTable",
+        component:<UserInputValuesTable/>
+
+    },
+    {
+          id:"TVCMsg",
+          message:"Please confirm all details which you have provided.",
+          trigger:"TVCMsg1"
+
+    },
+    {
+          id:"TVCMsg1",
+          message:"Do you want to continue for booking ?" ,
+          trigger:"TableValueConfirmation"   
+    },
+     {
+        id:"TableValueConfirmation",
+        options: [
+            {
+                id: "TBC",
+                value: true,
+                label: "Yes",
+                trigger: "Thanking_msg"
+            },
+            {
+                id: "TBC",
+                value: false,
+                label: "No",
+                trigger: "AskName"
+            },
+        ]
+     },
+
+    {
         id: "Thanking_msg",
         message: "Thank you for providing your information. Please wait while we are scheduling your appointment.",
         trigger: "thnaking_msg2"
@@ -426,6 +460,11 @@ export const steps = [
         component: <Loader />,
         asMessage: true,
        
+    },
+    {
+           id:"HighFiveMsg",
+           component:<GifHighFiveAfterBook/>,
+        //    asMessage:true
     },
     {
         id:"thnaking_msg3",
