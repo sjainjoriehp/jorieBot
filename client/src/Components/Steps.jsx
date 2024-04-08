@@ -3,7 +3,7 @@ import moment from 'moment';
 import { DateComp, ApptDate, MobileNum, TimeSlotPicker, Loader } from './SubComp/CommonComp';
 import { useState } from 'react';
 import { Greetings } from './SubComp/Greetings';
-import { BookApointmentBtn } from './SubComp/CustomService';
+import { BookApointmentBtn, GifGreatAfterBtn } from './SubComp/CustomService';
 function SendEmail(props) {
     const { steps } = props;
     let obj = {
@@ -84,6 +84,12 @@ export const steps = [
         // asMessage:true
 
     },
+    {
+        id:"GreetGif",
+        component:<GifGreatAfterBtn/>,
+        trigger:"AskName"
+    }
+    ,
     {
         id: "AskName",
         message: "Please enter Patient’s Full Name (Last Name, First Name)",
