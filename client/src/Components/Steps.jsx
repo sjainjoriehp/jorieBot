@@ -33,7 +33,7 @@ const BotData = () => {
     // console.log(ParseData?.name);
     return (
         <>
-            <div className="mainDataContainer">
+            {/* <div className="mainDataContainer">
                 <h3>Basic Detail:-</h3>
                 <table>
                     <tbody>
@@ -54,7 +54,7 @@ const BotData = () => {
 
                     </tbody>
                 </table>
-            </div>
+            </div> */}
         </>
     );
 }
