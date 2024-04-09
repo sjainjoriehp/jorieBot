@@ -195,7 +195,7 @@
 
 
 
-.blink_me{
+/* .blink_me{
   animation: blinker 1s linear infinite;
 }
 
@@ -203,8 +203,22 @@
   50% {
     opacity: 0;
   }
+} */
+
+
+.table{
+  
+  border: 1px solid white;
+  /* border: 5px solid white;
+  border-left: 5px solid #000;
+  border-right: 5px solid #000; */
+  border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  
 }
 
-
-
-
+ table tr,th{
+  border: 1px solid white;
+  font-weight: 100;
+  font-size: 14px;
+ }

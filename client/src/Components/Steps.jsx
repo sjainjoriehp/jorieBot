@@ -64,6 +64,7 @@ export const steps = [
           id:"InitialMsg",
           asMessage:true,
           component:<Greetings/>,
+        // component:<UserInputValuesTable/>,
           trigger:"Greet"
     },
     {
@@ -417,7 +418,8 @@ export const steps = [
     },
     {
         id:"UserInputValuesTable",
-        component:<UserInputValuesTable/>
+        component:<UserInputValuesTable/>,
+        asMessage:true
 
     },
     {
