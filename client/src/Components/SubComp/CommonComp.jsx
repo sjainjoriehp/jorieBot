@@ -15,18 +15,31 @@ import axios from "axios";
 export const DateComp = (props) => {
     const [dateState, setDateState] = useState("");
     const { state, dispatch } = useContext(Context);
-    // console.log("comp---", state);
+const [CheckExistingUsr,setExistingusr] = useState(""); 
+    
+useEffect(()=>{
+    const ExistingUser = ["sandeep negi","Sandeep Negi","negi sandeep","Negi Sandeep"];
+    const PatientName =   props?.steps?.user_input_for_name?.value.trim();
+    if(ExistingUser.includes(PatientName)){
+        setExistingusr(ExistingUser);
+    } else {
+        setExistingusr("");
+    }
+},[]);
+
     const changeDate = (e) => {
         setDateState(e)
         CallTrigger();
         let Pdob = { 'Patinet_DOB_payload': e ? moment(e).format('MM/DD/YYYY') : '' };
         dispatch({ type: "Patinet_DOB", payload: Pdob });
-
     }
-
     let Dob = dateState ? moment(dateState).format('MM/DD/YYYY') : '';
     const CallTrigger = (e) => {
-        props.triggerNextStep({ trigger: 'user_gender' })
+        if(!CheckExistingUsr) {
+            props.triggerNextStep({ trigger: 'user_gender' });
+        } else {
+            props.triggerNextStep({ trigger: 'LongTimeMsg' });
+        }
     }
     return (<>
         {Dob === '' ?
@@ -35,7 +48,6 @@ export const DateComp = (props) => {
             : <div>{Dob}</div>
         }
     </>)
-
 }
 
 export const ApptDate = (props) => {

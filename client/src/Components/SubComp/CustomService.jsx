@@ -60,7 +60,6 @@ export const GifGreatAfterBtn = (props) => {
   </>);
 }
 
-
 export const GifHighFiveAfterBook = (props) => {
 
   const GifGreate = () => {
@@ -91,8 +90,6 @@ export const GifHighFiveAfterBook = (props) => {
 
   </>);
 }
-
-
 
 export const UserInputValuesTable = (props) => {
 
@@ -145,8 +142,6 @@ let PatientDetail = {
   )
 }
 
-
-
 export const CongtratsMsg = (props) => {
 
 
@@ -169,6 +164,9 @@ export const CongtratsMsg = (props) => {
 
 }
 
-
-
-
+export const ExistingUserComp = (props) =>{
+  const PatientName =   props?.steps?.user_input_for_name?.value.trim();
+return (<>
+<div>It's been long time no see {PatientName}</div>
+</>);
+}

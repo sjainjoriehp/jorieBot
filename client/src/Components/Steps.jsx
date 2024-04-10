@@ -3,7 +3,7 @@ import moment from 'moment';
 import { DateComp, ApptDate, MobileNum, TimeSlotPicker, Loader } from './SubComp/CommonComp';
 import { useState } from 'react';
 import { Greetings } from './SubComp/Greetings';
-import { BookApointmentBtn, CongtratsMsg, GifGreatAfterBtn, GifHighFiveAfterBook, UserInputValuesTable } from './SubComp/CustomService';
+import { BookApointmentBtn, CongtratsMsg, ExistingUserComp, GifGreatAfterBtn, GifHighFiveAfterBook, UserInputValuesTable } from './SubComp/CustomService';
 function SendEmail(props) {
     const { steps } = props;
     let obj = {
@@ -22,9 +22,6 @@ SendEmail.props = {
 SendEmail.defaultProps = {
     steps: undefined,
 };
-
-
-
 
 const BotData = () => {
     const getData = localStorage.getItem('botValues');
@@ -116,13 +113,19 @@ export const steps = [
     },
     {
         id: "user_Dob",
-        message: "Please enter Patient’s Date of Birth (MM/DD/YYYY)",
+        message: `Please enter Patient’s Date of Birth (MM/DD/YYYY) `,
         trigger: "Patinet_DOB"
     },
     {
         id: "Patinet_DOB",
         component: <DateComp />,
         hideInput: true,
+    },
+    {
+        id:"LongTimeMsg",
+       component: <ExistingUserComp/>,
+       trigger:"user_gender",
+       asMessage:true
     },
 
     {
