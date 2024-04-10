@@ -82,7 +82,7 @@ export const steps = [
     {
         id:"BookBtn",
         component: <BookApointmentBtn />,
-        // asMessage:true
+        asMessage:true
 
     },
     {
