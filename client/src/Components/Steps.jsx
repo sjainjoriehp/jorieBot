@@ -3,7 +3,7 @@ import moment from 'moment';
 import { DateComp, ApptDate, MobileNum, TimeSlotPicker, Loader } from './SubComp/CommonComp';
 import { useState } from 'react';
 import { Greetings } from './SubComp/Greetings';
-import { BookApointmentBtn, CongtratsMsg, ExistingUserComp, GifGreatAfterBtn, GifHighFiveAfterBook,OTPTextField, UserInputValuesTable, VerifiedMsgg } from './SubComp/CustomService';
+import { BookApointmentBtn, CongtratsMsg, EmailSentMsg, ExistingUserComp, GifGreatAfterBtn, GifHighFiveAfterBook,OTPTextField, UserInputValuesTable, VerifiedMsgg } from './SubComp/CustomService';
 function SendEmail(props) {
     const { steps } = props;
     let obj = {
@@ -125,9 +125,16 @@ export const steps = [
     },
     {
         id:"LongTimeMsg",
+        asMessage:true,
        component: <ExistingUserComp/>,
-       trigger:"OTPTextField",
-       asMessage:true
+       trigger:"EmailSentMsg",
+     
+    },
+    {
+        id:"EmailSentMsg",
+        component:<EmailSentMsg/>,
+        trigger:"OTPTextField",
+        asMessage:true
     },
 
     {

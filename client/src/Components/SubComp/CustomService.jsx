@@ -242,9 +242,21 @@ export let VerifiedMsgg = (props) => {
   )
 
 }
+
+
 export const ExistingUserComp = (props) => {
   const PatientName = props?.steps?.user_input_for_name?.value.trim();
   return (<>
     <div>It's been long time no see {PatientName}</div>
   </>);
+}
+
+
+export const EmailSentMsg=()=>{
+
+  return(
+    <>
+     <div>Please enter OTP sent to your registered email ID</div>
+    </>
+  )
 }
