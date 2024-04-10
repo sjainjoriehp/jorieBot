@@ -11,7 +11,6 @@ import {
 import GreetGif from '../../resources/gifgit.gif'
 import HighFiveGif from '../../resources/c6a3b285-860a-4c53-869a-72073bab2005.gif'
 import '../../../src/customService.css'
-import OTPfield from '../SubComp/OTPField.css'
 
 
 export const BookApointmentBtn = (props) => {
@@ -62,7 +61,6 @@ export const GifGreatAfterBtn = (props) => {
   </>);
 }
 
-
 export const GifHighFiveAfterBook = (props) => {
 
   const GifGreate = () => {
@@ -94,8 +92,6 @@ export const GifHighFiveAfterBook = (props) => {
   </>);
 }
 
-
-
 export const UserInputValuesTable = (props) => {
 
   useEffect(() => {
@@ -105,49 +101,49 @@ export const UserInputValuesTable = (props) => {
     }, 2000)
   }, [])
 
-//Patient's value
-const { state, dispatch } = useContext(Context);
+  //Patient's value
+  const { state, dispatch } = useContext(Context);
 
-console.log(props);
-let PatientDetail = {
+  console.log(props);
+  let PatientDetail = {
     "Patient Full Name": props?.steps?.user_input_for_name?.value.trim(),
     "Email ID": props?.steps?.User_email?.value,
     "Gender": props?.steps?.gendr?.value,
     "DOB": (state[0]?.Patinet_DOB_payload) ? state[0]?.Patinet_DOB_payload : "NA",
-    "Address": (props?.steps?.User_input_address?.value) ? props?.steps?.User_input_address?.value :"NA",
+    "Address": (props?.steps?.User_input_address?.value) ? props?.steps?.User_input_address?.value : "NA",
     "Phone No": (state[1]?.Patinet_phone_payload) ? state[1]?.Patinet_phone_payload : "NA",
-    "Patient Insurance Status": (props?.steps?.HI_bool?.value==true) ? "Yes" : "No",
+    "Patient Insurance Status": (props?.steps?.HI_bool?.value == true) ? "Yes" : "No",
     "Insurance Provider Name": (props?.steps?.User_input_HI_name?.value) ? props?.steps?.User_input_HI_name?.value : "NA",
-    "Member ID": (props?.steps?.User_input_PHI_id?.value) ?props?.steps?.User_input_PHI_id?.value : "NA",
+    "Member ID": (props?.steps?.User_input_PHI_id?.value) ? props?.steps?.User_input_PHI_id?.value : "NA",
     // "Patient_Visiting_Status": (props?.steps?.IS_MRN?.value==false) ? "First Time Visit" : "Follow-up Visit",
-    "Preferred Healthcare Status": (props?.steps?.Prefred_dr?.value==false) ? "No":"YeS",
+    "Preferred Healthcare Status": (props?.steps?.Prefred_dr?.value == false) ? "No" : "YeS",
     "Preferred Provider Name": (props?.steps?.Patient_appointmentDr?.value) ? props?.steps?.Patient_appointmentDr?.value : "NA",
     "Date Of Visit": (state[2]?.Patinet_appointmentDate_payload) ? state[2]?.Patinet_appointmentDate_payload : "NA",
     "TimeSLot": (state[3]?.Patinet_timeSlot_payload) ? state[3]?.Patinet_timeSlot_payload : "NA",
-}
+  }
 
- console.log(PatientDetail)
+  // console.log(PatientDetail.Address)
 
   return (
-    <>
-    <div >
-      <table className="table">
-        {
-    Object.entries(PatientDetail).map(([key,val,index])=>(
-            <tr id={index}>
-            <th> {key}</th>
-            <td>{val}</td>
-          </tr>
-    ))
-        }
-      </table>
-    </div>
+      <>
+      <div >
+        <table className="table">
+          {
+            Object.entries(PatientDetail).map(([key, val, index]) => (
+              <tr id={index}>
+                <th> {key}</th>
+                <td>{val}</td>
+              </tr>
+            ))
+          }
+        </table>
+      </div>
 
-  </>
+    </>
+        
+    
   )
 }
-
-
 
 export const CongtratsMsg = (props) => {
 
@@ -171,53 +167,55 @@ export const CongtratsMsg = (props) => {
 }
 
 
-export const OTPTextField=(props)=>{
+export const OTPTextField = (props) => {
 
   const [otp, setOtp] = useState('');
-  const[flag,setFlag] =useState(true)
-  const[btncolor,setbtncolor]=useState("#afe5af")
+  const [flag, setFlag] = useState(true)
+  const [btncolor, setbtncolor] = useState("#afe5af")
 
-  
 
-   const handleChange = (enteredOtp) => {
-          setOtp(enteredOtp)
-           if( enteredOtp.length===4) { 
-            setFlag(false)
-            setbtncolor("green")
-          }
-           else {
-            setFlag(true)
-            setbtncolor("#afe5af")
-          }
-  
-         console.log("entre",enteredOtp,enteredOtp.length, flag)
+
+  const handleChange = (enteredOtp) => {
+    setOtp(enteredOtp)
+    if (enteredOtp.length === 4) {
+      setFlag(false)
+      setbtncolor("green")
+    }
+    else {
+      setFlag(true)
+      setbtncolor("#afe5af")
+    }
+
+    console.log("entre", enteredOtp, enteredOtp.length, flag)
   };
 
-   let submitHandle=()=>{
+  let submitHandle = () => {
+    setFlag(true)
     props.triggerNextStep({ trigger: 'VerifiedMsg' });
-   }
+  }
 
   return (
     <>
-          <div>
-            <span style={{alignItems:"center"}}>Enter OTP</span>
-            <OtpInput
-             isInputNum={false}
-            value={otp}
-            onChange={handleChange}
-            numInputs={4}
-            containerStyle={{ fontSize : "14px",
-                                borderRadius : "5px",
-                                width: "83px",
-                  
-                              }}
-            renderSeparator={<span>-</span>}
-            renderInput={(props) => <input  type="text" {...props} />}
-          />
+      <div>
+        <span style={{ alignItems: "center" }}>Enter OTP</span>
+        <OtpInput
+          isInputNum={false}
+          value={otp}
+          onChange={handleChange}
+          numInputs={4}
+          containerStyle={{
+            fontSize: "14px",
+            borderRadius: "5px",
+            width: "83px",
 
-          {/* <button onClick={()=>{setOtp()}}>Clear</button> */}
-          <button style={{backgroundColor: btncolor,marginTop:"10px",color: "white", }} onClick={submitHandle} disabled={flag} >Verify</button>
-          </div>
+          }}
+          renderSeparator={<span>-</span>}
+          renderInput={(props) => <input type="text" {...props} />}
+        />
+
+        {/* <button onClick={()=>{setOtp()}}>Clear</button> */}
+        <button style={{ backgroundColor: btncolor }} className="OTP-btn" onClick={submitHandle} disabled={flag} >Verify</button>
+      </div>
 
 
 
@@ -226,19 +224,8 @@ export const OTPTextField=(props)=>{
 }
 
 
-// {
-//   id:"OTPTextField",
-//   component:<OTPTextField/>
 
-// },
-// {
-//     id:"VerifiedMsg",
-//     component:<VerifiedMsgg/>,
-//     asMessage:true
-// },
-
-
-export let VerifiedMsgg=(props)=>{
+export let VerifiedMsgg = (props) => {
 
   useEffect(() => {
     setTimeout(() => {
@@ -246,12 +233,18 @@ export let VerifiedMsgg=(props)=>{
 
     }, 1000)
   }, [])
-  
- 
-  return(
+
+
+  return (
     <>
-     <span>OTP Verified</span>
+      <span>OTP Verified</span>
     </>
   )
 
+}
+export const ExistingUserComp = (props) => {
+  const PatientName = props?.steps?.user_input_for_name?.value.trim();
+  return (<>
+    <div>It's been long time no see {PatientName}</div>
+  </>);
 }
