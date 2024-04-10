@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
+import OtpInput from 'react-otp-input';
+
 import { Context } from '../../Context/ContextProvider';
 import CallCenterAvtar from "../../resources/CallCenterAvatar.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,7 +11,7 @@ import {
 import GreetGif from '../../resources/gifgit.gif'
 import HighFiveGif from '../../resources/c6a3b285-860a-4c53-869a-72073bab2005.gif'
 import '../../../src/customService.css'
-
+import OTPfield from '../SubComp/OTPField.css'
 
 
 export const BookApointmentBtn = (props) => {
@@ -149,7 +151,6 @@ let PatientDetail = {
 
 export const CongtratsMsg = (props) => {
 
-
   useEffect(() => {
     setTimeout(() => {
       props.triggerNextStep({ trigger: 'thnaking_msg5' });
@@ -170,5 +171,87 @@ export const CongtratsMsg = (props) => {
 }
 
 
+export const OTPTextField=(props)=>{
+
+  const [otp, setOtp] = useState('');
+  const[flag,setFlag] =useState(true)
+  const[btncolor,setbtncolor]=useState("#afe5af")
+
+  
+
+   const handleChange = (enteredOtp) => {
+          setOtp(enteredOtp)
+           if( enteredOtp.length===4) { 
+            setFlag(false)
+            setbtncolor("green")
+          }
+           else {
+            setFlag(true)
+            setbtncolor("#afe5af")
+          }
+  
+         console.log("entre",enteredOtp,enteredOtp.length, flag)
+  };
+
+   let submitHandle=()=>{
+    props.triggerNextStep({ trigger: 'VerifiedMsg' });
+   }
+
+  return (
+    <>
+          <div>
+            <span style={{alignItems:"center"}}>Enter OTP</span>
+            <OtpInput
+             isInputNum={false}
+            value={otp}
+            onChange={handleChange}
+            numInputs={4}
+            containerStyle={{ fontSize : "14px",
+                                borderRadius : "5px",
+                                width: "83px",
+                  
+                              }}
+            renderSeparator={<span>-</span>}
+            renderInput={(props) => <input  type="text" {...props} />}
+          />
+
+          {/* <button onClick={()=>{setOtp()}}>Clear</button> */}
+          <button style={{backgroundColor: btncolor,marginTop:"10px",color: "white", }} onClick={submitHandle} disabled={flag} >Verify</button>
+          </div>
 
 
+
+    </>
+  )
+}
+
+
+// {
+//   id:"OTPTextField",
+//   component:<OTPTextField/>
+
+// },
+// {
+//     id:"VerifiedMsg",
+//     component:<VerifiedMsgg/>,
+//     asMessage:true
+// },
+
+
+export let VerifiedMsgg=(props)=>{
+
+  useEffect(() => {
+    setTimeout(() => {
+      props.triggerNextStep({ trigger: 'P_healthcareProvider' });
+
+    }, 1000)
+  }, [])
+  
+ 
+  return(
+    <>
+     <span>OTP Verified</span>
+    </>
+  )
+
+}
