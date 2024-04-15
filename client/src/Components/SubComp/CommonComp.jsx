@@ -35,11 +35,13 @@ useEffect(()=>{
     }
     let Dob = dateState ? moment(dateState).format('MM/DD/YYYY') : '';
     const CallTrigger = (e) => {
-        if(!CheckExistingUsr) {
-            props.triggerNextStep({ trigger: 'user_gender' });
-        } else {
-            props.triggerNextStep({ trigger: 'LongTimeMsg' });
-        }
+        // if(!CheckExistingUsr) {
+        //     props.triggerNextStep({ trigger: 'user_gender' });
+        // } else {
+        //     props.triggerNextStep({ trigger: 'LongTimeMsg' });
+        // }
+        props.triggerNextStep({ trigger: 'PatientEmail' });
+        
     }
     return (<>
         {Dob === '' ?
@@ -88,7 +90,7 @@ export const MobileNum = (props) => {
     const numberClick = (e) => {
         if (phone?.length < 10) { return false; }
         SetkeyPress(true);
-        props.triggerNextStep({ trigger: 'PatientEmail' });
+        props.triggerNextStep({ trigger: 'Patient_HI' });
 
         let Patient_phone = { 'Patinet_phone_payload': phone ? phone : '' };
         dispatch({ type: "Patinet_Phone", payload: Patient_phone });
