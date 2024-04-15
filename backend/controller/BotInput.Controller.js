@@ -63,62 +63,6 @@ exports.FetchAllBotInput=async (req, res) => {
 }
 
 
-exports.checkUser=async (req, res) => {
-    try {
-        
-        // const tokenCompare = await bcrypt.compare(process.env.SECRET_TOKEN,req.header("token"));
-        // if (!tokenCompare) {
-        //   return res.status(401).json({
-        //     status: 401,
-        //     message: `Please Authenticate with Valid Credentials.`
-        // })
-
-        // }
-
-        let {Patient_Name,Patient_email,Patient_DOB}=req.body
-        if(!Patient_Name || !Patient_email || !Patient_DOB)
-        {
-            return res.status(400).json({
-                status: 400,
-                userStatus: true,
-                message: `Bad Request`
-            });
-        }
-        console.log(req.body)
-        const input = await BotInfo.find({ $and:[{Patient_Name:Patient_Name},{Patient_email:Patient_email},{Patient_DOB:Patient_DOB}]}).limit(1);
-        
-        
-        
-         if (input.length!==0 ) {
-            //Logging into LogFile
-            logger.botInfoLogger.log('info','Successfully fetch  UserInput find by BOT')
-          return res.status(200).json({
-              status: 200,
-              userStatus: true,
-              message: `Patient detail's found`
-          });
-
-      } else {
-        logger.botInfoLogger.log('info','Patient not exist')
-          return res.status(200).json({
-              status: 200,
-              userStatus: false,
-              message: 'Patient list is Empty.'
-          });
-          
-      }
-
-    } 
-    catch (error) {
-        console.error(error.message);
-        logger.botInfoLogger.log('error','Error occured in fetch UserInput saved by BOT')
-        return res.status(500).json({ status: 500, Error: err, message: 'Internal server Error !.' });
-       
-    }
-}
-
-
-
 
 exports.AddBotInput= async (req, res) => {
     try {

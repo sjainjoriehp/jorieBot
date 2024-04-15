@@ -3,7 +3,7 @@ import moment from 'moment';
 import { DateComp, ApptDate, MobileNum, TimeSlotPicker, Loader } from './SubComp/CommonComp';
 import { useState } from 'react';
 import { Greetings } from './SubComp/Greetings';
-import { BookApointmentBtn, CheckUserExist, CongtratsMsg, EmailSentMsg, ExistingUserComp, GifGreatAfterBtn, GifHighFiveAfterBook,OTPTextField, UserInputValuesTable, VerifiedMsgg } from './SubComp/CustomService';
+import { BookApointmentBtn, CongtratsMsg, EmailSentMsg, ExistingUserComp, GifGreatAfterBtn, GifHighFiveAfterBook,OTPTextField, UserInputValuesTable, VerifiedMsgg } from './SubComp/CustomService';
 function SendEmail(props) {
     const { steps } = props;
     let obj = {
@@ -213,12 +213,7 @@ export const steps = [
             return true;
         },
         user: true,
-        trigger: "checkUserExist"
-    },
-    {
-              id:"checkUserExist",
-              component:<CheckUserExist/>,
-              asMessage:true
+        trigger: "Patient_HI"
     },
     {
         id: "Patient_HI",

@@ -1,6 +1,6 @@
 const express=require('express')
 const router = express.Router();
-let {AddBotInput,FetchAllBotInput,checkUser}=require('../controller/BotInput.Controller.js')
+let {AddBotInput,FetchAllBotInput}=require('../controller/BotInput.Controller.js')
 let {FetchAllRPAOutput,AddRPAOutput} =require('../controller/BotOutput.Controller.js')
 let {checkTcken} =require('../Auth/auth.middleware.js')
 let{BotInputValidate}=require('../Services/BotInput.Validate.js')
@@ -11,10 +11,6 @@ let{RPAOutputValidate} =require('../Services/RPAOutput.Validate.js')
 router.post('/addInput',checkTcken,BotInputValidate,AddBotInput);
 // ROUTE 2: Get BotInput Details using: GET "/api/fetchInput". Token required
 router.get('/fetchInput',checkTcken,FetchAllBotInput)
-
-
-// Route 3: Check if User is Already exists
-router.post('/check_user',checkTcken,checkUser) 
 
 //ROute 3 : Get RPAOutput , details using  GET "api/rpaOutput"  Token required
 router.get('/rpaOutput',checkTcken,FetchAllRPAOutput)

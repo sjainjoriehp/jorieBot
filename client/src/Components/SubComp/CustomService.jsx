@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import OtpInput from 'react-otp-input';
-import axios from "axios";
+
 import { Context } from '../../Context/ContextProvider';
 import CallCenterAvtar from "../../resources/CallCenterAvatar.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -125,7 +125,7 @@ export const UserInputValuesTable = (props) => {
   // console.log(PatientDetail.Address)
 
   return (
-    <>
+      <>
       <div >
         <table className="table">
           {
@@ -140,8 +140,8 @@ export const UserInputValuesTable = (props) => {
       </div>
 
     </>
-
-
+        
+    
   )
 }
 
@@ -252,54 +252,11 @@ export const ExistingUserComp = (props) => {
 }
 
 
-export const EmailSentMsg = () => {
+export const EmailSentMsg=()=>{
 
-  return (
+  return(
     <>
-      <div>Please enter OTP sent to your registered email ID</div>
+     <div>Please enter OTP sent to your registered email ID</div>
     </>
   )
-}
-
-
-export const CheckUserExist = (props) => {
-
-  const { state, dispatch } = useContext(Context);
-  const [flag,setflag]=useState(true)
- async function userExist()  {
-
-    const userAuthData_Token = process.env.REACT_APP_API_userAuth_Token;
-    
-    console.log("TOken", userAuthData_Token)
-    const apiurl = process.env.REACT_APP_API_ROOT_URL
-    const userData = {
-      "Patient_Name": props?.steps?.user_input_for_name?.value.trim(),
-      "Patient_email": props?.steps?.User_email?.value,
-      "Patient_DOB": state[0]?.Patinet_DOB_payload
-    }
-
-
-    
-    let respon= await axios.post(`${apiurl}api/check_user`,userData ,{ headers: { "authorization": `Bearer ${userAuthData_Token}` } })
-     return  respon 
-   
-  }
-
-     useEffect(async()=>{
-      let respon=await userExist()
-     
-      console.log(respon)
-      if (respon.data.userStatus) {
-        props.triggerNextStep({ trigger: 'P_healthcareProvider' });
-    
-      } else {
-        props.triggerNextStep({ trigger: 'user_gender' });
-      }
-     },[])
-
-
-     return(
-      <>We are checking your existance...</>
-     )
-
 }
